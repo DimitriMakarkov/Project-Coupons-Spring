@@ -1,5 +1,6 @@
 package com.JB.Project.Coupons.Beans;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.validator.constraints.Length;
@@ -19,11 +20,9 @@ public class Coupon {
     private Integer id;
 
     @Column(name = "company_id",nullable = false)
-    @Length(min = 0)
     private Integer company_id;
 
     @Column(name = "category_id",nullable = false)
-    @Length(min = 0)
     private Integer category_id;
 
     @Column(name = "title",nullable = false,length = 25)
@@ -34,24 +33,24 @@ public class Coupon {
     @Length(min = 0,max = 40)
     private String description;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "yyyy-MM-dd") //new
     @Column(name = "start_date",nullable = false)
     private Date start_date; //Date mysql not java util
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "yyyy-MM-dd") //new
     @Column(name = "end_date",nullable = false)
     private Date end_date; //Date mysql not java util
 
     @Column(name = "amount",nullable = false)
-    @Length(min = 0)
     private Integer amount;
 
     @Column(name = "price",nullable = false)
-    @Length(min = 0)
-    private Double price;
+    private float price;
 
     @Column(name = "image",nullable = true)
     private String image;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @Singular
-    private List<Coupon> coupons;
+//    @ManyToMany(cascade = CascadeType.ALL)
+//    @Singular
+//    private List<Coupon> coupons;
 }

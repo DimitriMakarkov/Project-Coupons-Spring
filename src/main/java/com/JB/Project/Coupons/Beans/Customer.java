@@ -1,11 +1,9 @@
 package com.JB.Project.Coupons.Beans;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.validator.constraints.Length;
+import java.util.List;
 
 @Data
 @Entity
@@ -34,4 +32,8 @@ public class Customer {
     @Column(name = "password", nullable = false, length = 30)
     @Length(min = 5, max = 20)
     private String password;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @Singular
+    private List<Coupon> coupons;
 }

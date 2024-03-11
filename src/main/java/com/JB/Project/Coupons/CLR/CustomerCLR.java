@@ -13,7 +13,7 @@ import java.util.Date;
 
 @Component
 @Order(2)
-public class AddCustomer implements CommandLineRunner{
+public class CustomerCLR implements CommandLineRunner{
 
     @Autowired
     CustomerRepo customerRepo;

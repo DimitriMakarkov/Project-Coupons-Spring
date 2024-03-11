@@ -10,7 +10,7 @@ import java.util.Arrays;
 
 @Component
 @Order(3)
-public class AddCategory implements CommandLineRunner {
+public class CategoryCLR implements CommandLineRunner {
 
     @Autowired
     CategoryRepo categoryRepo;

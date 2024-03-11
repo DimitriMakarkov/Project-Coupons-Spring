@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Order(4)
-public class AddCoupon implements CommandLineRunner {
+public class CouponCLR implements CommandLineRunner {
 
     @Autowired
     CouponRepo couponRepo;

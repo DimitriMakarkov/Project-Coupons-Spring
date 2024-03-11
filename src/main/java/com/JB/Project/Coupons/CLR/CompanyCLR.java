@@ -12,7 +12,7 @@ import java.util.Optional;
 
 @Component
 @Order(1)
-public class AddCompany implements CommandLineRunner {
+public class CompanyCLR implements CommandLineRunner {
 
     @Autowired
     CompanyRepo companyRepo;

@@ -1,4 +1,4 @@
-package com.JB.Project.Coupons.CLR.CategoryCLR;
+package com.JB.Project.Coupons.CLR;
 
 import com.JB.Project.Coupons.Beans.Category;
 import com.JB.Project.Coupons.Repositories.CategoryRepo;

@@ -1,4 +1,4 @@
-package com.JB.Project.Coupons.CLR.CustomerCLR;
+package com.JB.Project.Coupons.CLR;
 
 import com.JB.Project.Coupons.Beans.Coupon;
 import com.JB.Project.Coupons.Beans.Customer;

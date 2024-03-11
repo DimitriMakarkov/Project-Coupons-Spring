@@ -1,4 +1,4 @@
-package com.JB.Project.Coupons.CLR.CouponCLR;
+package com.JB.Project.Coupons.CLR;
 
 import com.JB.Project.Coupons.Repositories.CouponRepo;
 import org.springframework.beans.factory.annotation.Autowired;

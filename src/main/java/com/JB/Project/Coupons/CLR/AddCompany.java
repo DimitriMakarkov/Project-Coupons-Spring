@@ -1,4 +1,4 @@
-package com.JB.Project.Coupons.CLR.CompanyCLR;
+package com.JB.Project.Coupons.CLR;
 
 import com.JB.Project.Coupons.Beans.Company;
 import com.JB.Project.Coupons.Repositories.CompanyRepo;

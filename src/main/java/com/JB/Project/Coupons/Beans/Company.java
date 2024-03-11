@@ -30,8 +30,8 @@ public class Company {
     @Length(min = 5, max = 20)
     private String password;
 
-//    @Singular
-//    @ManyToMany(cascade = CascadeType.ALL)
-//    private List<Coupon> coupons; //test
+    @Singular
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Coupon> coupons; //test
 
 }

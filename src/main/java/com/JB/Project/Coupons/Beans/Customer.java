@@ -33,7 +33,7 @@ public class Customer {
     @Length(min = 5, max = 20)
     private String password;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL)
     @Singular
     private List<Coupon> coupons;
 }

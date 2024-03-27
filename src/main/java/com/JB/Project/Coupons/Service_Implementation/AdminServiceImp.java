@@ -33,12 +33,26 @@ public class AdminServiceImp implements AdminService {
 
     @Override
     public void updateCompany(int companyID, Company company) throws CouponSystemException {
-
+        Optional<Company> findCompany = companyRepo.findById(companyID);
+        if (findCompany.isPresent()) {
+            companyRepo.saveAndFlush(company); //works only if inputs id in body
+            System.out.println("Company has been updated!");
+        }
+        else {
+            System.out.println("Company not found");
+        }
     }
 
     @Override
     public void deleteCompany(int companyID) throws CouponSystemException {
-
+        Optional<Company> findCompany = companyRepo.findById(companyID);
+        if (!findCompany.isPresent()) {
+            companyRepo.deleteById(companyID);
+            System.out.println("Company has been deleted!");
+            //remove coupons that are associated with the company
+        }
+        new CouponSystemException(ErrorMessage.ID_NOT_FOUND);//check if works
+        System.out.println("Company not found");
     }
 
     @Override

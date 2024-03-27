@@ -22,7 +22,7 @@ public class Config {
 
         Info info = new Info()
                 .title("Coupons Management System API")
-                .version("1.0")
+                .version("2.0")
                 .description("This API Exposes Endpoints To Manage Coupons")
                 .contact(myContact);
 

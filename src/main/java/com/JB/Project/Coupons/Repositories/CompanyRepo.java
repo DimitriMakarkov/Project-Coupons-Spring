@@ -8,4 +8,6 @@ import java.util.Optional;
 public interface CompanyRepo extends JpaRepository<Company,Integer> {
 
     Optional<Company> findByName(String Name);
+
+    Optional<Company> findByEmail(String Email);
 }

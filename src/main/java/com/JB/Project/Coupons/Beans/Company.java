@@ -31,7 +31,7 @@ public class Company {
     private String password;
 
     @Singular
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<Coupon> coupons; //test
+    @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true,mappedBy = "company_id")
+    private List<Coupon> coupons;
 
 }

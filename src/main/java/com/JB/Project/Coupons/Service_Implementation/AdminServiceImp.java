@@ -18,16 +18,21 @@ public class AdminServiceImp implements AdminService {
 
     @Override
     public void addCompany(Company company) throws CouponSystemException {
-        Optional<Company> findCompany = companyRepo.findByName(company.getName());
-//        findCompany.ifPresent((comp) -> {
-//            System.out.println("Company with the same name already exists");
-//        });
-        if (!findCompany.isPresent()) {
-            companyRepo.save(company);
-            System.out.println("Company saved successfully!");
+        Optional<Company> findCompanyName = companyRepo.findByName(company.getName());
+        if (!findCompanyName.isPresent()) {
+            Optional<Company> findCompanyEmail = companyRepo.findByEmail(company.getEmail());
+            if (!findCompanyEmail.isPresent()){
+                companyRepo.save(company);
+                System.out.println("Company saved successfully!");
+            }
+            else {
+                System.out.println("Company with the same email already exists");
+                throw new CouponSystemException(ErrorMessage.COMPANY_EMAIL_EXISTS);
+            }
         }
         else {
             System.out.println("Company with the same name already exists");
+            throw new CouponSystemException(ErrorMessage.COMPANY_NAME_EXISTS);
         }
     }
 
@@ -44,15 +49,16 @@ public class AdminServiceImp implements AdminService {
     }
 
     @Override
-    public void deleteCompany(int companyID) throws CouponSystemException {
+    public void deleteCompany(int companyID) throws CouponSystemException { //deletes the associated customer to the coupon that is associated to the company
         Optional<Company> findCompany = companyRepo.findById(companyID);
-        if (!findCompany.isPresent()) {
+        if (findCompany.isPresent()) {
             companyRepo.deleteById(companyID);
             System.out.println("Company has been deleted!");
-            //remove coupons that are associated with the company
         }
-        new CouponSystemException(ErrorMessage.ID_NOT_FOUND);//check if works
-        System.out.println("Company not found");
+        else {
+            System.out.println("Company not found");
+            new CouponSystemException(ErrorMessage.ID_NOT_FOUND);
+        }
     }
 
     @Override

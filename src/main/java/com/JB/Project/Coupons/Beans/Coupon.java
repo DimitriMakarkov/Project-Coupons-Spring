@@ -47,10 +47,15 @@ public class Coupon {
     @Column(name = "price",nullable = false)
     private float price;
 
-    @Column(name = "image",nullable = true)
+    @Column(name = "image")
     private String image;
 
 //    @ManyToMany(cascade = CascadeType.ALL)
 //    @Singular
 //    private List<Coupon> coupons;
+
+    @Singular
+    @OneToMany(cascade = CascadeType.MERGE,mappedBy = "id")
+    private List<Customer> customers;
+
 }

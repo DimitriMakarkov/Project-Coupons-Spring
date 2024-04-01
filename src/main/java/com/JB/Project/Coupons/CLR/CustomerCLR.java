@@ -23,6 +23,7 @@ public class CustomerCLR implements CommandLineRunner{
 
     @Override
     public void run(String... args) throws Exception {
+
         //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~temp~~~~~~~~~~~~~~~~~~~~
         String StartDate = "2024/01/01";
         String EndDate = "2025/01/01";

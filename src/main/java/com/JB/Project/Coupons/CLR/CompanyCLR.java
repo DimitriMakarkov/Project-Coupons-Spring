@@ -1,12 +1,15 @@
 package com.JB.Project.Coupons.CLR;
 
 import com.JB.Project.Coupons.Beans.Company;
+import com.JB.Project.Coupons.Beans.Coupon;
 import com.JB.Project.Coupons.Repositories.CompanyRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Optional;
 
 
@@ -26,13 +29,6 @@ public class CompanyCLR implements CommandLineRunner {
                 .password("12345678")
                 .build();
 
-        Optional<Company> findCompany = companyRepo.findByName(company1.getName());
-        findCompany.ifPresent((company) -> {
-            System.out.println("Company with the same name already exists");
-        });
-        if (!findCompany.isPresent()) {
-            companyRepo.save(company1);
-            System.out.println("Company saved successfully!");
-        }
+        companyRepo.save(company1);
     }
 }

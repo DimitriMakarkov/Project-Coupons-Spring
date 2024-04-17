@@ -62,12 +62,15 @@ public class CompanyServiceImp implements CompanyService {
 
     @Override
     public List<Coupon> getAllCategoryCoupons(int categoryID) throws CouponSystemException {
-        return couponRepo.findAllByCategory(categoryID);
+//        return couponRepo.findAllByCategory(categoryID);
+        return null;
     }
+
 
     @Override
     public List<Coupon> getAllMaxPriceCoupons(int maxPrice) throws CouponSystemException {
-        return couponRepo.findAllByMaxPrice(maxPrice);
+//        return couponRepo.findAllByMaxPrice(maxPrice);
+        return null;
     }
 
     @Override

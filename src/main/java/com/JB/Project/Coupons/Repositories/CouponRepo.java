@@ -10,7 +10,7 @@ public interface CouponRepo extends JpaRepository<Coupon,Integer> {
 
     Optional<Coupon> findByTitle(String Name);
 
-    List<Coupon> findAllByCategory(int CategoryID);
-
-    List<Coupon> findAllByMaxPrice(int MaxPrice);
+//    List<Coupon> findAllByCategory(int CategoryID);
+//
+//    List<Coupon> findAllByMaxPrice(int MaxPrice);
 }

@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -43,7 +42,7 @@ public class CouponCLR implements CommandLineRunner {
                 .price(250.0f)
                 .build();
 
-//            couponRepo.save(coupon1);
+            couponRepo.save(coupon1);
 
 
 

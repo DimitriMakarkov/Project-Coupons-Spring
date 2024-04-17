@@ -49,13 +49,10 @@ public class Coupon {
 
     @Column(name = "image")
     private String image;
-
-//    @ManyToMany(cascade = CascadeType.ALL)
+//
+//    @ManyToMany(cascade = CascadeType.REMOVE)
 //    @Singular
 //    private List<Coupon> coupons;
 
-    @Singular
-    @OneToMany(cascade = CascadeType.MERGE,mappedBy = "id")
-    private List<Customer> customers;
 
 }

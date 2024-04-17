@@ -9,6 +9,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 
 @Component
@@ -38,13 +40,13 @@ public class CustomerCLR implements CommandLineRunner{
 
         Coupon coupon1 = Coupon.builder()
                 .company_id(1)
-                .category_id(4)
-                .title("Vacation")
-                .description("15% off")
+                .category_id(2)
+                .title("Electricity")
+                .description("20% off")
                 .start_date(CouponStartDate)
                 .end_date(CouponEndDate)
                 .amount(5)
-                .price(250.0f)
+                .price(200.0f)
                 .build();
 
         Customer customer1 = Customer.builder()
@@ -55,6 +57,7 @@ public class CustomerCLR implements CommandLineRunner{
                 .coupon(coupon1)
                 .build();
 
-        customerRepo.save(customer1);
+
+//        customerRepo.saveAll(Arrays.asList(customer1));
     }
 }

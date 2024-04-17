@@ -32,12 +32,12 @@ public class AdminServiceImp implements AdminService {
             }
             else {
                 System.out.println("Company with the same email already exists");
-                throw new CouponSystemException(ErrorMessage.COMPANY_EMAIL_EXISTS);
+//                throw new CouponSystemException(ErrorMessage.COMPANY_EMAIL_EXISTS);
             }
         }
         else {
             System.out.println("Company with the same name already exists");
-            throw new CouponSystemException(ErrorMessage.COMPANY_NAME_EXISTS);
+//            throw new CouponSystemException(ErrorMessage.COMPANY_NAME_EXISTS);
         }
     }
 
@@ -45,8 +45,13 @@ public class AdminServiceImp implements AdminService {
     public void updateCompany(int companyID, Company company) throws CouponSystemException {
         Optional<Company> findCompany = companyRepo.findById(companyID);
         if (findCompany.isPresent()) {
-            companyRepo.saveAndFlush(company); //works only if inputs id in body
-            System.out.println("Company has been updated!");
+            if (company.getName()==findCompany.get().getName()) {
+                companyRepo.saveAndFlush(company);
+                System.out.println("Company has been updated!");
+            }
+            else {
+                System.out.println("Cannot change company name");
+            }
         }
         else {
             System.out.println("Company not found");
@@ -86,7 +91,7 @@ public class AdminServiceImp implements AdminService {
             }
             else {
                 System.out.println("Customer with the same email already exists");
-                throw new CouponSystemException(ErrorMessage.CUSTOMER_EMAIL_EXISTS);
+//                throw new CouponSystemException(ErrorMessage.CUSTOMER_EMAIL_EXISTS);
             }
         }
 
@@ -98,7 +103,7 @@ public class AdminServiceImp implements AdminService {
             System.out.println("Customer has been updated!");
         } else {
             System.out.println("Customer not found");
-            new CouponSystemException(ErrorMessage.CUSTOMER_NOT_FOUND);
+//            new CouponSystemException(ErrorMessage.CUSTOMER_NOT_FOUND);
         }
     }
 

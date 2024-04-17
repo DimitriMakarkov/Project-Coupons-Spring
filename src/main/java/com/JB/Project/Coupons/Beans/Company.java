@@ -3,7 +3,6 @@ package com.JB.Project.Coupons.Beans;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.validator.constraints.Length;
-
 import java.util.List;
 
 @Data
@@ -31,7 +30,7 @@ public class Company {
     private String password;
 
     @Singular
-    @OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true,mappedBy = "company_id")
+    @OneToMany(cascade = CascadeType.REMOVE,orphanRemoval = true,mappedBy = "id")
     private List<Coupon> coupons;
 
 }

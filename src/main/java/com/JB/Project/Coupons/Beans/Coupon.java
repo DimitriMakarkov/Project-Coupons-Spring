@@ -3,6 +3,10 @@ package com.JB.Project.Coupons.Beans;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
 import java.sql.Date;
 import java.util.List;
@@ -19,11 +23,11 @@ public class Coupon {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "company_id",nullable = false)
-    private Integer company_id;
+    @Column(name = "companyId",nullable = false)
+    private Integer companyid;
 
-    @Column(name = "category_id",nullable = false)
-    private Integer category_id;
+    @Column(name = "categoryId",nullable = false)
+    private Integer categoryid;
 
     @Column(name = "title",nullable = false,length = 25)
     @Length(min = 3,max = 20)
@@ -49,10 +53,13 @@ public class Coupon {
 
     @Column(name = "image")
     private String image;
-//
+
 //    @ManyToMany(cascade = CascadeType.REMOVE)
 //    @Singular
 //    private List<Coupon> coupons;
+//@Singular
+//@OneToMany(cascade = CascadeType.ALL)
+//    private List<Customer> customers;
 
 
 }

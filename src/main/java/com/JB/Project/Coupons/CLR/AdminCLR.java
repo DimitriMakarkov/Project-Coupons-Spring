@@ -8,13 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
 @Component
-@Order(5)
+@Order(2)
 public class AdminCLR implements CommandLineRunner {
 
     @Autowired
@@ -66,14 +65,14 @@ public class AdminCLR implements CommandLineRunner {
         //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~temp~~~~~~~~~~~~~~~~~~~~
 
         Coupon coupon1 = Coupon.builder()
-                .company_id(1)
-                .category_id(2)
+                .companyid(1)
+                .categoryid(2)
                 .title("Electricity")
                 .description("20% off")
                 .start_date(CouponStartDate)
                 .end_date(CouponEndDate)
                 .amount(5)
-                .price(200.0f)
+                .price(300.0f)
                 .build();
 
         Customer customer1 = Customer.builder()
@@ -93,6 +92,8 @@ public class AdminCLR implements CommandLineRunner {
 
         adminService.addCustomer(customer1);
         adminService.addCustomer(customer2);
+
+//        adminService.deleteCompany(1);
 //        adminService.addCustomer(customer2);
 //        customer1.setFirstName("eeee");
 //        adminService.updateCustomer(1,customer1);

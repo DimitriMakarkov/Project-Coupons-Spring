@@ -1,16 +1,20 @@
 package com.JB.Project.Coupons.Beans;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.*;
 import org.hibernate.validator.constraints.Length;
 import java.util.List;
 
 @Data
+@Builder
 @Entity
 @Table(name = "companies")
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 public class Company {
 
     @Id
@@ -30,7 +34,9 @@ public class Company {
     private String password;
 
     @Singular
-    @OneToMany(cascade = CascadeType.REMOVE,orphanRemoval = true,mappedBy = "id")
+//    @OneToMany(cascade = CascadeType.REMOVE,orphanRemoval = true,mappedBy = "id")
+    @OneToMany(cascade = CascadeType.REMOVE,orphanRemoval = true)
+    @JoinColumn(name = "company")
     private List<Coupon> coupons;
 
 }

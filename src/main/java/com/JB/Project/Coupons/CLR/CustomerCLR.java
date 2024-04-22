@@ -4,6 +4,7 @@ import com.JB.Project.Coupons.Beans.Coupon;
 import com.JB.Project.Coupons.Beans.Customer;
 import com.JB.Project.Coupons.Repositories.CouponRepo;
 import com.JB.Project.Coupons.Repositories.CustomerRepo;
+import com.JB.Project.Coupons.Services.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
@@ -14,7 +15,7 @@ import java.util.Arrays;
 import java.util.Date;
 
 @Component
-@Order(2)
+//@Order(3)
 public class CustomerCLR implements CommandLineRunner{
 
     @Autowired
@@ -22,6 +23,7 @@ public class CustomerCLR implements CommandLineRunner{
 
     @Autowired
     CouponRepo couponRepo;
+
 
     @Override
     public void run(String... args) throws Exception {
@@ -39,8 +41,8 @@ public class CustomerCLR implements CommandLineRunner{
         //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~temp~~~~~~~~~~~~~~~~~~~~
 
         Coupon coupon1 = Coupon.builder()
-                .company_id(1)
-                .category_id(2)
+                .companyid(1)
+                .categoryid(2)
                 .title("Electricity")
                 .description("20% off")
                 .start_date(CouponStartDate)
@@ -49,13 +51,13 @@ public class CustomerCLR implements CommandLineRunner{
                 .price(200.0f)
                 .build();
 
-        Customer customer1 = Customer.builder()
-                .firstName("dima")
-                .lastName("makarkov")
-                .email("dima9650@gmail.com")
-                .password("12345678")
-                .coupon(coupon1)
-                .build();
+//        Customer customer1 = Customer.builder()
+//                .firstName("dima")
+//                .lastName("makarkov")
+//                .email("dima9650@gmail.com")
+//                .password("12345678")
+//                .coupon(coupon1)
+//                .build();
 
 
 //        customerRepo.saveAll(Arrays.asList(customer1));

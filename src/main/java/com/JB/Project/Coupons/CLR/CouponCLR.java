@@ -10,7 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Component
-@Order(4)
+//@Order(4)
 public class CouponCLR implements CommandLineRunner {
 
     @Autowired
@@ -32,8 +32,8 @@ public class CouponCLR implements CommandLineRunner {
         //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~temp~~~~~~~~~~~~~~~~~~~~
 
         Coupon coupon1 = Coupon.builder()
-                .company_id(1)
-                .category_id(4)
+                .companyid(1)
+                .categoryid(4)
                 .title("Vacation")
                 .description("15% off")
                 .start_date(CouponStartDate)
@@ -42,7 +42,7 @@ public class CouponCLR implements CommandLineRunner {
                 .price(250.0f)
                 .build();
 
-            couponRepo.save(coupon1);
+//            couponRepo.save(coupon1);
 
 
 

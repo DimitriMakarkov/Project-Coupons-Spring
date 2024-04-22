@@ -8,9 +8,12 @@ import com.JB.Project.Coupons.Repositories.CompanyRepo;
 import com.JB.Project.Coupons.Repositories.CouponRepo;
 import com.JB.Project.Coupons.Services.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Predicate;
 
+@Service
 public class CompanyServiceImp implements CompanyService {
 
     @Autowired
@@ -27,7 +30,7 @@ public class CompanyServiceImp implements CompanyService {
             System.out.println("Coupon saved successfully!");
         } else {
             System.out.println("Coupon with the same title exists");
-            throw new CouponSystemException(ErrorMessage.COUPON_TITLE_EXISTS);
+//            throw new CouponSystemException(ErrorMessage.COUPON_TITLE_EXISTS);
         }
     }
 
@@ -35,11 +38,20 @@ public class CompanyServiceImp implements CompanyService {
     public void updateCoupon(int couponID, Coupon coupon) throws CouponSystemException {
         Optional<Coupon> findCompanyCoupon = couponRepo.findById(couponID);
         if (findCompanyCoupon.isPresent()) {
-            couponRepo.saveAndFlush(coupon);
+            Coupon updatedCoupon = findCompanyCoupon.get();
+            updatedCoupon.setAmount(coupon.getAmount());
+            updatedCoupon.setDescription(coupon.getDescription());
+            updatedCoupon.setCategoryid(coupon.getCategoryid());
+            updatedCoupon.setStart_date(coupon.getStart_date());
+            updatedCoupon.setEnd_date(coupon.getEnd_date());
+            updatedCoupon.setTitle(coupon.getTitle());
+            updatedCoupon.setPrice(coupon.getPrice());
+            updatedCoupon.setImage(coupon.getImage());
+            couponRepo.saveAndFlush(updatedCoupon);
             System.out.println("Coupon has been updated");
         } else {
             System.out.println("Coupon not found...");
-            throw new CouponSystemException(ErrorMessage.COUPON_NOT_FOUND);
+//            throw new CouponSystemException(ErrorMessage.COUPON_NOT_FOUND);
         }
     }
 
@@ -51,7 +63,7 @@ public class CompanyServiceImp implements CompanyService {
             System.out.println("Coupon has been deleted");
         } else {
             System.out.println("Coupon not found...");
-            throw new CouponSystemException(ErrorMessage.COUPON_NOT_FOUND);
+//            throw new CouponSystemException(ErrorMessage.COUPON_NOT_FOUND);
         }
     }
 
@@ -61,20 +73,24 @@ public class CompanyServiceImp implements CompanyService {
     }
 
     @Override
-    public List<Coupon> getAllCategoryCoupons(int categoryID) throws CouponSystemException {
-//        return couponRepo.findAllByCategory(categoryID);
-        return null;
+    public List<Coupon> getAllCategoryCoupons(int company_id,int category_id) throws CouponSystemException {
+       List<Coupon> CompanyCoupons = couponRepo.findAllByCompanyid(company_id);
+        Predicate<Coupon> condition = coupon -> coupon.getCategoryid().equals(category_id);
+        CompanyCoupons.removeIf(condition);
+        return CompanyCoupons;
     }
 
 
     @Override
-    public List<Coupon> getAllMaxPriceCoupons(int maxPrice) throws CouponSystemException {
-//        return couponRepo.findAllByMaxPrice(maxPrice);
-        return null;
+    public List<Coupon> getAllMaxPriceCoupons(int company_id,float maxPrice) throws CouponSystemException {
+        List<Coupon> CompanyCoupons = couponRepo.findAllByCompanyid(company_id);
+        Predicate<Coupon> condition = coupon -> coupon.getPrice()>maxPrice;
+        CompanyCoupons.removeIf(condition);
+        return CompanyCoupons;
     }
 
     @Override
-    public Company getCompanyInfo() {
-        return null;
+    public Company getCompanyInfo(int companyID) throws CouponSystemException{
+        return companyRepo.findById(companyID).orElseThrow(() -> new CouponSystemException(ErrorMessage.ID_NOT_FOUND));
     }
 }

@@ -2,6 +2,10 @@ package com.JB.Project.Coupons.Beans;
 
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
 import java.util.List;
 
@@ -34,6 +38,8 @@ public class Customer {
     private String password;
 
     @OneToMany(cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn(name = "coupon_id")
+    @JoinTable(name = "customers_vs_coupons")
     @Singular
     private List<Coupon> coupons;
 }

@@ -1,10 +1,12 @@
 package com.JB.Project.Coupons.Service_Implementation;
 
 import com.JB.Project.Coupons.Beans.Company;
+import com.JB.Project.Coupons.Beans.Coupon;
 import com.JB.Project.Coupons.Beans.Customer;
 import com.JB.Project.Coupons.Exceptions.CouponSystemException;
 import com.JB.Project.Coupons.Exceptions.ErrorMessage;
 import com.JB.Project.Coupons.Repositories.CompanyRepo;
+import com.JB.Project.Coupons.Repositories.CouponRepo;
 import com.JB.Project.Coupons.Repositories.CustomerRepo;
 import com.JB.Project.Coupons.Services.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,9 @@ public class AdminServiceImp implements AdminService {
 
     @Autowired
     CompanyRepo companyRepo;
+
+    @Autowired
+    CouponRepo couponRepo;
 
     @Autowired
     CustomerRepo customerRepo;
@@ -63,12 +68,19 @@ public class AdminServiceImp implements AdminService {
         //deletes the associated customer to the coupon that is associated to the company
         Optional<Company> findCompany = companyRepo.findById(companyID);
         if (findCompany.isPresent()) {
+//            companyRepo.deleteById(companyID);
+//            System.out.println("Company has been deleted!");
+
+            List<Coupon> companyCoupons = couponRepo.findAllById(companyID);
+            for (Coupon coupon : companyCoupons) {
+                couponRepo.deleteById(coupon.getId());
+            }
             companyRepo.deleteById(companyID);
-            System.out.println("Company has been deleted!");
+            System.out.println("Company and all related coupons and purchases have been deleted!");
         }
         else {
             System.out.println("Company not found");
-            new CouponSystemException(ErrorMessage.ID_NOT_FOUND);
+//            new CouponSystemException(ErrorMessage.ID_NOT_FOUND);
         }
     }
 

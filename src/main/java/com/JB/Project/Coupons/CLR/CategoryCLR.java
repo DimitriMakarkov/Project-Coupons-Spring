@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 import java.util.Arrays;
 
 @Component
-@Order(3)
+@Order(1)
 public class CategoryCLR implements CommandLineRunner {
 
     @Autowired

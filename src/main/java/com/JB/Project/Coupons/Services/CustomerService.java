@@ -8,13 +8,13 @@ import java.util.List;
 
 public interface CustomerService {
 
-    void purchaseCoupon(int couponID) throws CouponSystemException;
+    void purchaseCoupon(int couponID,int customerID) throws CouponSystemException;
 
-    List<Coupon> getAllCustomerCoupons();
+    List<Coupon> getAllCustomerCoupons(int customerID) throws CouponSystemException;
 
-    List<Coupon> getAllCategoryCoupons(int categoryID) throws CouponSystemException;
+    List<Coupon> getAllCategoryCoupons(int customerID,int categoryID) throws CouponSystemException;
 
-    List<Coupon> getAllMaxPriceCoupons(int maxPrice) throws CouponSystemException;
+    List<Coupon> getAllMaxPriceCoupons(int customerID,float maxPrice) throws CouponSystemException;
 
-    Customer getCustomerInfo();
+    Customer getCustomerInfo(int customerID) throws CouponSystemException;
 }

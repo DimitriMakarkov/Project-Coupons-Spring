@@ -5,6 +5,7 @@ import com.JB.Project.Coupons.Beans.Customer;
 import com.JB.Project.Coupons.Repositories.CouponRepo;
 import com.JB.Project.Coupons.Repositories.CustomerRepo;
 import com.JB.Project.Coupons.Services.AdminService;
+import com.JB.Project.Coupons.Services.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
@@ -15,7 +16,7 @@ import java.util.Arrays;
 import java.util.Date;
 
 @Component
-//@Order(3)
+@Order(4)
 public class CustomerCLR implements CommandLineRunner{
 
     @Autowired
@@ -23,6 +24,9 @@ public class CustomerCLR implements CommandLineRunner{
 
     @Autowired
     CouponRepo couponRepo;
+
+    @Autowired
+    CustomerService customerService;
 
 
     @Override
@@ -51,15 +55,10 @@ public class CustomerCLR implements CommandLineRunner{
                 .price(200.0f)
                 .build();
 
-//        Customer customer1 = Customer.builder()
-//                .firstName("dima")
-//                .lastName("makarkov")
-//                .email("dima9650@gmail.com")
-//                .password("12345678")
-//                .coupon(coupon1)
-//                .build();
-
-
-//        customerRepo.saveAll(Arrays.asList(customer1));
+            customerService.purchaseCoupon(2,2);
+        System.out.println(customerService.getAllCustomerCoupons(2));
+        System.out.println(customerService.getAllCategoryCoupons(2,4));
+        System.out.println(customerService.getAllMaxPriceCoupons(2,250));
+        System.out.println(customerService.getCustomerInfo(1));
     }
 }

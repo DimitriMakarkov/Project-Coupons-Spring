@@ -12,12 +12,4 @@ public interface CouponRepo extends JpaRepository<Coupon,Integer> {
     List<Coupon> findAllById(int company_id);
 
     List<Coupon> findAllByCompanyid(int Companyid);
-
-//    List<Coupon> findByCategoryId(int categoryId);
-
-//    void deleteAllById(int coupon_id);
-
-//    List<Coupon> findAllByCategory(int CategoryID);
-//
-//    List<Coupon> findAllByMaxPrice(int MaxPrice);
 }

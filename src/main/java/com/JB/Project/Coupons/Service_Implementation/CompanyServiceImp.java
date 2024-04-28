@@ -76,7 +76,7 @@ public class CompanyServiceImp implements CompanyService {
     public List<Coupon> getAllCategoryCoupons(int company_id,int category_id) throws CouponSystemException {
        List<Coupon> CompanyCoupons = couponRepo.findAllByCompanyid(company_id);
         Predicate<Coupon> condition = coupon -> coupon.getCategoryid().equals(category_id);
-        CompanyCoupons.removeIf(condition);
+        CompanyCoupons.removeIf(condition);//todo - check if it deletes the coupon by accident
         return CompanyCoupons;
     }
 

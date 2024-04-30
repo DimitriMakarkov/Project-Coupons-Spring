@@ -11,6 +11,7 @@ import com.JB.Project.Coupons.Repositories.CustomerRepo;
 import com.JB.Project.Coupons.Services.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -31,17 +32,16 @@ public class AdminServiceImp implements AdminService {
         Optional<Company> findCompanyName = companyRepo.findByName(company.getName());
         if (!findCompanyName.isPresent()) {
             Optional<Company> findCompanyEmail = companyRepo.findByEmail(company.getEmail());
-            if (!findCompanyEmail.isPresent()){
+            if (!findCompanyEmail.isPresent()) {
+                System.out.println(company);
                 companyRepo.save(company);
                 System.out.println("Company saved successfully!");
-            }
-            else {
-                System.out.println("Company with the same email already exists");
+            } else {
+                System.out.println("Company with the same email already exists...");
 //                throw new CouponSystemException(ErrorMessage.COMPANY_EMAIL_EXISTS);
             }
-        }
-        else {
-            System.out.println("Company with the same name already exists");
+        } else {
+            System.out.println("Company with the same name already exists...");
 //            throw new CouponSystemException(ErrorMessage.COMPANY_NAME_EXISTS);
         }
     }
@@ -50,37 +50,33 @@ public class AdminServiceImp implements AdminService {
     public void updateCompany(int companyID, Company company) throws CouponSystemException {
         Optional<Company> findCompany = companyRepo.findById(companyID);
         if (findCompany.isPresent()) {
-            if (company.getName()==findCompany.get().getName()) {
+            if (company.getName().equals(findCompany.get().getName())) {
+                System.out.println(company);
                 companyRepo.saveAndFlush(company);
                 System.out.println("Company has been updated!");
+            } else {
+                System.out.println("Cannot change company name...");
             }
-            else {
-                System.out.println("Cannot change company name");
-            }
-        }
-        else {
-            System.out.println("Company not found");
+        } else {
+            System.out.println("Company not found...");
         }
     }
 
     @Override
-    public void deleteCompany(int companyID) throws CouponSystemException {
-        //deletes the associated customer to the coupon that is associated to the company
-        Optional<Company> findCompany = companyRepo.findById(companyID);
+    public void deleteCompany(int companyId) throws CouponSystemException {
+        Optional<Company> findCompany = companyRepo.findById(companyId);
+        System.out.println(findCompany);
         if (findCompany.isPresent()) {
-//            companyRepo.deleteById(companyID);
-//            System.out.println("Company has been deleted!");
-
-            List<Coupon> companyCoupons = couponRepo.findAllById(companyID);
-            for (Coupon coupon : companyCoupons) {
-                couponRepo.deleteById(coupon.getId());
+            List<Customer> CustomersWithCoupons = customerRepo.findByCouponsCompanyid(companyId);
+            System.out.println(CustomersWithCoupons);
+            if (!CustomersWithCoupons.isEmpty()) {
+                for (Customer customer : CustomersWithCoupons) {
+                    customer.setCoupons(null);
+                }
+                customerRepo.saveAllAndFlush(CustomersWithCoupons);
+                companyRepo.deleteById(companyId);
+                couponRepo.deleteAllByCompanyid(companyId);
             }
-            companyRepo.deleteById(companyID);
-            System.out.println("Company and all related coupons and purchases have been deleted!");
-        }
-        else {
-            System.out.println("Company not found");
-//            new CouponSystemException(ErrorMessage.ID_NOT_FOUND);
         }
     }
 
@@ -98,30 +94,45 @@ public class AdminServiceImp implements AdminService {
     public void addCustomer(Customer customer) throws CouponSystemException {
         Optional<Customer> findCustomerName = customerRepo.findByEmail(customer.getEmail());
         if (!findCustomerName.isPresent()) {
-                customerRepo.save(customer);
-                System.out.println("Customer saved successfully!");
-            }
-            else {
-                System.out.println("Customer with the same email already exists");
-//                throw new CouponSystemException(ErrorMessage.CUSTOMER_EMAIL_EXISTS);
-            }
+            System.out.println(customer);
+            customerRepo.save(customer);
+            System.out.println("Customer saved successfully!");
+        } else {
+            System.out.println("Customer with the same email already exists...");
         }
+    }
 
     @Override
     public void updateCustomer(int customerID, Customer customer) throws CouponSystemException {
         Optional<Customer> findCustomer = customerRepo.findById(customerID);
         if (findCustomer.isPresent()) {
-            customerRepo.saveAndFlush(customer);
-            System.out.println("Customer has been updated!");
+            if (customer.getId().equals(findCustomer.get().getId())) {
+                System.out.println(customer);
+                customerRepo.saveAndFlush(customer);
+                System.out.println("Customer has been updated!");
+            } else {
+                System.out.println("Customer id does not match...");
+            }
         } else {
-            System.out.println("Customer not found");
+            System.out.println("Customer not found...");
 //            new CouponSystemException(ErrorMessage.CUSTOMER_NOT_FOUND);
         }
     }
 
     @Override
     public void deleteCustomer(int customerID) throws CouponSystemException {
-        //todo: delete with all purchased coupons
+        Optional<Customer> findCustomer = customerRepo.findById(customerID);
+        if (findCustomer.isPresent()) {
+            Customer customer = findCustomer.get();
+            System.out.println(customer);
+            customer.setCoupons(null);
+            customerRepo.saveAndFlush(customer);
+            customerRepo.deleteById(customerID);
+            System.out.println("Customer has been deleted!");
+        }
+        else {
+            System.out.println("Customer not found...");
+        }
     }
 
     @Override

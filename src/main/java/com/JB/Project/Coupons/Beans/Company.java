@@ -34,9 +34,11 @@ public class Company {
     private String password;
 
     @Singular
-//    @OneToMany(cascade = CascadeType.REMOVE,orphanRemoval = true,mappedBy = "id")
-    @OneToMany(cascade = CascadeType.REMOVE,orphanRemoval = true)
-    @JoinColumn(name = "company")
+//    @OneToMany(cascade = CascadeType.REMOVE,orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "companyId")
     private List<Coupon> coupons;
-
+//@Singular
+//@OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true, mappedBy = "companyid")
+//private List<Coupon> coupons;
 }

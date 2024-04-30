@@ -39,35 +39,56 @@ public class CompanyCLR implements CommandLineRunner {
                 .description("15% off")
                 .start_date(CouponStartDate)
                 .end_date(CouponEndDate)
-                .amount(5)
+                .amount(7)
                 .price(220.0f)
                 .build();
 
         Coupon coupon2 = Coupon.builder()
                 .companyid(1)
-                .categoryid(4)
-                .title("Vacatio")
+                .categoryid(1)
+                .title("Food")
                 .description("25% off")
                 .start_date(CouponStartDate)
                 .end_date(CouponEndDate)
-                .amount(5)
+                .amount(6)
                 .price(150.0f)
+                .build();
+
+        Coupon coupon3 = Coupon.builder()
+                .companyid(1)
+                .categoryid(1)
+                .title("Food")
+                .description("30% off")
+                .start_date(CouponStartDate)
+                .end_date(CouponEndDate)
+                .amount(2)
+                .price(100.0f)
+                .build();
+
+        Coupon coupon4 = Coupon.builder()
+                .companyid(2)
+                .categoryid(1)
+                .title("Food")
+                .description("30% off")
+                .start_date(CouponStartDate)
+                .end_date(CouponEndDate)
+                .amount(2)
+                .price(100.0f)
                 .build();
 
         companyService.addCoupon(coupon1);
         companyService.addCoupon(coupon2);
-        coupon1.setCompanyid(2);
-        coupon1.setId(5);
+        companyService.addCoupon(coupon3);
+        companyService.addCoupon(coupon4);
+        coupon1.setCompanyid(3);
+        coupon1.setId(10);
         coupon1.setDescription("10% off");
-        companyService.updateCoupon(2, coupon1);
-//    companyService.deleteCoupon(2);
-        //todo - fix delete coupon and make sure deletes purchases history
+        companyService.updateCoupon(3, coupon1);
+//    companyService.deleteCoupon(1);//
+        System.out.println(companyService.getAllCompanyCoupons(1));
         System.out.println(companyService.getCompanyInfo(2));
-        System.out.println(companyService.getAllCategoryCoupons(1,2));
-        System.out.println(companyService.getAllMaxPriceCoupons(1,250.0f));
-
-        //everything works without crashing :D
-        // for now...
+        System.out.println(companyService.getAllCategoryCoupons(1,3));
+        System.out.println(companyService.getAllMaxPriceCoupons(1,210.0f));
 
     }
 }

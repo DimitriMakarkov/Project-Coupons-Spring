@@ -31,16 +31,16 @@ public class CouponCLR implements CommandLineRunner {
         java.sql.Date CouponEndDate = new java.sql.Date(EndDatemilli);
         //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~temp~~~~~~~~~~~~~~~~~~~~
 
-        Coupon coupon1 = Coupon.builder()
-                .companyid(1)
-                .categoryid(4)
-                .title("Vacation")
-                .description("15% off")
-                .start_date(CouponStartDate)
-                .end_date(CouponEndDate)
-                .amount(5)
-                .price(250.0f)
-                .build();
+//        Coupon coupon1 = Coupon.builder()
+//                .companyid(1)
+//                .categoryid(4)
+//                .title("Vacation")
+//                .description("15% off")
+//                .start_date(CouponStartDate)
+//                .end_date(CouponEndDate)
+//                .amount(5)
+//                .price(250.0f)
+//                .build();
 
 //            couponRepo.save(coupon1);
 

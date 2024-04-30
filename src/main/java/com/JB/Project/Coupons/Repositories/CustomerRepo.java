@@ -10,4 +10,8 @@ import java.util.Optional;
 public interface CustomerRepo extends JpaRepository<Customer,Integer> {
 
     Optional<Customer> findByEmail(String Email);
+
+    List<Customer> findByCouponsCompanyid(Integer companyid);
+
+    List<Customer> findByCouponsId(Integer couponid);
 }

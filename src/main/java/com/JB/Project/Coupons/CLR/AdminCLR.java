@@ -22,36 +22,6 @@ public class AdminCLR implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        Company company1 = Company.builder()
-                .name("test")
-                .email("test@gmail.com")
-                .password("12345678")
-                .build();
-
-        Company company2 = Company.builder()
-                .name("something")
-                .email("something@gmail.com")
-                .password("87654321")
-                .build();
-
-        Company company3 = Company.builder()
-                .name("nothing")
-                .email("nothing@gmail.com")
-                .password("12345678")
-                .build();
-//todo - add sout to each service for showing in console what it saved/updated/deleted/ect...
-        adminService.addCompany(company1);
-//        adminService.addCompany(company1);
-        adminService.addCompany(company2);
-        adminService.addCompany(company3);
-////            company3.setName("eeee");
-//        adminService.updateCompany(5,company3);
-////            adminService.deleteCompany(3); //todo -fix, deletes the associated customer to the coupon that is associated to the company
-//        System.out.println(adminService.getAllCompanies());
-//        System.out.println(adminService.getSingleCompany(1));
-
-
-
         //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~temp~~~~~~~~~~~~~~~~~~~~
         String StartDate = "2024/01/01";
         String EndDate = "2025/01/01";
@@ -65,7 +35,7 @@ public class AdminCLR implements CommandLineRunner {
         //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~temp~~~~~~~~~~~~~~~~~~~~
 
         Coupon coupon1 = Coupon.builder()
-                .companyid(1)
+                .companyid(2)
                 .categoryid(2)
                 .title("Electricity")
                 .description("20% off")
@@ -75,12 +45,56 @@ public class AdminCLR implements CommandLineRunner {
                 .price(300.0f)
                 .build();
 
+        Coupon coupon2 = Coupon.builder()
+                .companyid(1)
+                .categoryid(3)
+                .title("Restaurant")
+                .description("10% off")
+                .start_date(CouponStartDate)
+                .end_date(CouponEndDate)
+                .amount(3)
+                .price(200.0f)
+                .build();
+
+        Company company1 = Company.builder()
+                .name("test")
+                .email("test@gmail.com")
+                .password("12345678")
+                .coupon(coupon2)
+                .build();
+
+        Company company2 = Company.builder()
+                .name("something")
+                .email("something@gmail.com")
+                .password("87654321")
+                .coupon(coupon1)
+                .build();
+
+        Company company3 = Company.builder()
+                .name("nothing")
+                .email("nothing@gmail.com")
+                .password("12345678")
+                .build();
+
+
+//todo - add sout to each service for showing in console what it saved/updated/deleted/ect...
+        adminService.addCompany(company1);
+        adminService.addCompany(company1);
+        adminService.addCompany(company2);
+        adminService.addCompany(company3);
+        company3.setPassword("87654321");
+        adminService.updateCompany(3,company3);
+            company3.setName("new name");
+        adminService.updateCompany(3,company3);
+////            adminService.deleteCompany(3);
+        System.out.println(adminService.getAllCompanies());
+        System.out.println(adminService.getSingleCompany(1));
+
         Customer customer1 = Customer.builder()
                 .firstName("dima")
                 .lastName("makarkov")
                 .email("dima9650@gmail.com")
                 .password("12345678")
-                .coupon(coupon1)
                 .build();
 
         Customer customer2 = Customer.builder()
@@ -90,17 +104,24 @@ public class AdminCLR implements CommandLineRunner {
                 .password("87654321")
                 .build();
 
+        Customer customer3 = Customer.builder()
+                .firstName("valeri")
+                .lastName("makarkov")
+                .email("valeri@gmail.com")
+                .password("12345678")
+                .build();
+
         adminService.addCustomer(customer1);
         adminService.addCustomer(customer2);
-
-//        adminService.deleteCompany(1);
-//        adminService.addCustomer(customer2);
-//        customer1.setFirstName("eeee");
-//        adminService.updateCustomer(1,customer1);
-//        adminService.updateCustomer(3,customer1);
-//        adminService.deleteCustomer(1);
-//        System.out.println(adminService.getAllCustomers());
-//        System.out.println(adminService.getSingleCustomer(2));
+        adminService.addCustomer(customer2);
+        adminService.addCustomer(customer3);
+        customer3.setPassword("87654321");
+        adminService.updateCustomer(3,customer3);
+        customer3.setId(10);
+        adminService.updateCustomer(3,customer3);
+        adminService.deleteCustomer(3);
+        System.out.println(adminService.getAllCustomers());
+        System.out.println(adminService.getSingleCustomer(2));
 
 
     }

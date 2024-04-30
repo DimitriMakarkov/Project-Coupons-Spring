@@ -13,7 +13,7 @@ public interface CompanyService {
 
     void deleteCoupon(int couponID) throws CouponSystemException;
 
-    List<Coupon> getAllCompanyCoupons();
+    List<Coupon> getAllCompanyCoupons(int companyID) throws CouponSystemException;
 
     List<Coupon> getAllCategoryCoupons(int companyID,int categoryID) throws CouponSystemException;
 

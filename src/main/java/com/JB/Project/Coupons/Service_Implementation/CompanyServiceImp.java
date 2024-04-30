@@ -2,10 +2,12 @@ package com.JB.Project.Coupons.Service_Implementation;
 
 import com.JB.Project.Coupons.Beans.Company;
 import com.JB.Project.Coupons.Beans.Coupon;
+import com.JB.Project.Coupons.Beans.Customer;
 import com.JB.Project.Coupons.Exceptions.CouponSystemException;
 import com.JB.Project.Coupons.Exceptions.ErrorMessage;
 import com.JB.Project.Coupons.Repositories.CompanyRepo;
 import com.JB.Project.Coupons.Repositories.CouponRepo;
+import com.JB.Project.Coupons.Repositories.CustomerRepo;
 import com.JB.Project.Coupons.Services.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,15 +24,26 @@ public class CompanyServiceImp implements CompanyService {
     @Autowired
     CouponRepo couponRepo;
 
+    @Autowired
+    CustomerRepo customerRepo;
+
     @Override
     public void addCoupon(Coupon coupon) throws CouponSystemException {
         Optional<Coupon> findCompanyCoupon = couponRepo.findByTitle(coupon.getTitle());
         if (!findCompanyCoupon.isPresent()) {
+            System.out.println(coupon);
             couponRepo.save(coupon);
             System.out.println("Coupon saved successfully!");
         } else {
-            System.out.println("Coupon with the same title exists");
+            if (coupon.getCompanyid().equals(findCompanyCoupon.get().getCompanyid())) {
+                System.out.println("Coupon with the same title exists...");
 //            throw new CouponSystemException(ErrorMessage.COUPON_TITLE_EXISTS);
+            }
+            else {
+                System.out.println(coupon);
+                couponRepo.save(coupon);
+                System.out.println("Coupon saved successfully!");
+            }
         }
     }
 
@@ -47,6 +60,7 @@ public class CompanyServiceImp implements CompanyService {
             updatedCoupon.setTitle(coupon.getTitle());
             updatedCoupon.setPrice(coupon.getPrice());
             updatedCoupon.setImage(coupon.getImage());
+            System.out.println(updatedCoupon);
             couponRepo.saveAndFlush(updatedCoupon);
             System.out.println("Coupon has been updated");
         } else {
@@ -57,25 +71,36 @@ public class CompanyServiceImp implements CompanyService {
 
     @Override
     public void deleteCoupon(int couponID) throws CouponSystemException {
-        Optional<Coupon> findComapnyCoupon = couponRepo.findById(couponID);
-        if (findComapnyCoupon.isPresent()) {
-            couponRepo.deleteById(couponID);
-            System.out.println("Coupon has been deleted");
+        Optional<Coupon> findCustomerCoupon = couponRepo.findById(couponID);
+        if (findCustomerCoupon.isPresent()) {
+            List<Customer> CustomersWithCoupons = customerRepo.findByCouponsId(couponID);
+            System.out.println(CustomersWithCoupons);
+            if (!CustomersWithCoupons.isEmpty()) {
+                for (Customer customer : CustomersWithCoupons) {
+                    customer.setCoupons(null);
+                }
+                customerRepo.saveAllAndFlush(CustomersWithCoupons);
+                couponRepo.deleteById(couponID);
+                System.out.println("Coupon has been deleted");
+            }
+            else {
+                System.out.println("No customers with coupons");
+            }
         } else {
             System.out.println("Coupon not found...");
-//            throw new CouponSystemException(ErrorMessage.COUPON_NOT_FOUND);
         }
     }
 
     @Override
-    public List<Coupon> getAllCompanyCoupons() {
-        return couponRepo.findAll();
+    public List<Coupon> getAllCompanyCoupons(int companyID) throws CouponSystemException {
+        List<Coupon> companyCoupons = couponRepo.findAllByCompanyid(companyID);
+        return companyCoupons;
     }
 
     @Override
     public List<Coupon> getAllCategoryCoupons(int company_id,int category_id) throws CouponSystemException {
        List<Coupon> CompanyCoupons = couponRepo.findAllByCompanyid(company_id);
-        Predicate<Coupon> condition = coupon -> coupon.getCategoryid().equals(category_id);
+        Predicate<Coupon> condition = coupon -> !coupon.getCategoryid().equals(category_id);
         CompanyCoupons.removeIf(condition);//todo - check if it deletes the coupon by accident
         return CompanyCoupons;
     }

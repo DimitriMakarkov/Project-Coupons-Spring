@@ -17,7 +17,7 @@ import java.util.Date;
 
 @Component
 @Order(4)
-public class CustomerCLR implements CommandLineRunner{
+public class CustomerCLR implements CommandLineRunner {
 
     @Autowired
     CustomerRepo customerRepo;
@@ -55,10 +55,14 @@ public class CustomerCLR implements CommandLineRunner{
                 .price(200.0f)
                 .build();
 
-            customerService.purchaseCoupon(2,2);
+            customerService.purchaseCoupon(1,1);
+//            customerService.purchaseCoupon(1,2);//todo- wont purchase the same coupon if already another customer has it
+        customerService.purchaseCoupon(2,1);
+        System.out.println(customerService.getAllCustomerCoupons(1));
         System.out.println(customerService.getAllCustomerCoupons(2));
-        System.out.println(customerService.getAllCategoryCoupons(2,4));
-        System.out.println(customerService.getAllMaxPriceCoupons(2,250));
-        System.out.println(customerService.getCustomerInfo(1));
+        System.out.println(customerService.getAllCategoryCoupons(1,3));
+        System.out.println(customerService.getAllCategoryCoupons(1,4));
+        System.out.println(customerService.getAllMaxPriceCoupons(1,250));
+        System.out.println(customerService.getCustomerInfo(2));
     }
 }

@@ -53,7 +53,7 @@ public class CustomerCLR implements CommandLineRunner {
                 .price(200.0f)
                 .build();
 
-        CustomerService userCustomerTest = LoginManager.getInstance().CustomerLogin("dima9650@gmail.com", "12345678", ClientType.Customer);
+        CustomerService userCustomerTest = LoginManager.getInstance().CustomerLogin("customer10@gmail.com", "12345678", ClientType.Customer);
         userCustomerTest = customerService;
 
         userCustomerTest.purchaseCoupon(1, 1);

@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -93,23 +92,23 @@ public class AdminCLR implements CommandLineRunner {
         System.out.println(userAdminTest.getSingleCompany(1));
 
         Customer customer1 = Customer.builder()
-                .firstName("dima")
-                .lastName("makarkov")
-                .email("dima9650@gmail.com")
+                .firstName("Testcustomer1")
+                .lastName("one")
+                .email("customer10@gmail.com")
                 .password("12345678")
                 .build();
 
         Customer customer2 = Customer.builder()
-                .firstName("kosta")
-                .lastName("makarkov")
-                .email("kosta@gmail.com")
+                .firstName("Testcustomer2")
+                .lastName("two")
+                .email("customer2@gmail.com")
                 .password("87654321")
                 .build();
 
         Customer customer3 = Customer.builder()
-                .firstName("valeri")
-                .lastName("makarkov")
-                .email("valeri@gmail.com")
+                .firstName("Testcustomer3")
+                .lastName("three")
+                .email("customer3@gmail.com")
                 .password("12345678")
                 .build();
 

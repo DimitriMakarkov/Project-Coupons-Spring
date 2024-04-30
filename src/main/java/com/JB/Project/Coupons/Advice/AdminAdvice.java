@@ -14,18 +14,18 @@ import java.util.Map;
 public class AdminAdvice {
     @ExceptionHandler(value = {CouponSystemException.class})
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ErrorDetails handleError(Exception e){
-        return new ErrorDetails("Error",e.getMessage());
+    public ErrorDetails handleError(Exception e) {
+        return new ErrorDetails("Error", e.getMessage());
     }
 
     @ExceptionHandler(value = MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public Map<String,String> handleValidationExceptions(MethodArgumentNotValidException exception){
-        Map<String,String> errors = new HashMap<>();
-        exception.getBindingResult().getAllErrors().forEach((error)->{
-            String fieldName = ((FieldError)error).getField();
+    public Map<String, String> handleValidationExceptions(MethodArgumentNotValidException exception) {
+        Map<String, String> errors = new HashMap<>();
+        exception.getBindingResult().getAllErrors().forEach((error) -> {
+            String fieldName = ((FieldError) error).getField();
             String errorMessage = error.getDefaultMessage();
-            errors.put(fieldName,errorMessage);
+            errors.put(fieldName, errorMessage);
         });
         System.out.println(exception.getBindingResult().getAllErrors());
         return errors;

@@ -11,7 +11,7 @@ import java.util.List;
 @Configuration
 public class Config {
     @Bean
-    public OpenAPI defineOpenAPI(){
+    public OpenAPI defineOpenAPI() {
         Server server = new Server();
         server.setUrl("http://localhost:8080");
         server.setDescription("Project Coupons With Spring FrameWork");

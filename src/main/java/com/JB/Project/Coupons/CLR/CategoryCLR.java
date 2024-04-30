@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
+
 import java.util.Arrays;
 
 @Component
@@ -14,6 +15,7 @@ public class CategoryCLR implements CommandLineRunner {
 
     @Autowired
     CategoryRepo categoryRepo;
+
     @Override
     public void run(String... args) throws Exception {
 
@@ -33,6 +35,6 @@ public class CategoryCLR implements CommandLineRunner {
                 .name("Vacation")
                 .build();
 
-        categoryRepo.saveAll(Arrays.asList(category1,category2,category3,category4));
+        categoryRepo.saveAll(Arrays.asList(category1, category2, category3, category4));
     }
 }

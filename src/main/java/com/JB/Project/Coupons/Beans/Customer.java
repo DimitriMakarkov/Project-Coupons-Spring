@@ -39,7 +39,6 @@ public class Customer {
 
     @OneToMany(cascade = CascadeType.ALL)
     @PrimaryKeyJoinColumn(name = "coupon_id")
-//    @JoinColumn(name = "couponsId")
     @JoinTable(name = "customers_vs_coupons")
     @Singular
     private List<Coupon> coupons;

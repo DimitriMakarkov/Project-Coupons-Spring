@@ -1,18 +1,16 @@
 package com.JB.Project.Coupons.CLR;
 
 import com.JB.Project.Coupons.Beans.Coupon;
-import com.JB.Project.Coupons.Beans.Customer;
+import com.JB.Project.Coupons.Login.ClientType;
+import com.JB.Project.Coupons.Login.LoginManager;
 import com.JB.Project.Coupons.Repositories.CouponRepo;
 import com.JB.Project.Coupons.Repositories.CustomerRepo;
-import com.JB.Project.Coupons.Services.AdminService;
 import com.JB.Project.Coupons.Services.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 
 @Component
@@ -55,14 +53,16 @@ public class CustomerCLR implements CommandLineRunner {
                 .price(200.0f)
                 .build();
 
-            customerService.purchaseCoupon(1,1);
-//            customerService.purchaseCoupon(1,2);//todo- wont purchase the same coupon if already another customer has it
-        customerService.purchaseCoupon(2,1);
-        System.out.println(customerService.getAllCustomerCoupons(1));
-        System.out.println(customerService.getAllCustomerCoupons(2));
-        System.out.println(customerService.getAllCategoryCoupons(1,3));
-        System.out.println(customerService.getAllCategoryCoupons(1,4));
-        System.out.println(customerService.getAllMaxPriceCoupons(1,250));
-        System.out.println(customerService.getCustomerInfo(2));
+        CustomerService userCustomerTest = LoginManager.getInstance().CustomerLogin("dima9650@gmail.com", "12345678", ClientType.Customer);
+        userCustomerTest = customerService;
+
+        userCustomerTest.purchaseCoupon(1, 1);
+        userCustomerTest.purchaseCoupon(2, 1);
+        System.out.println(userCustomerTest.getAllCustomerCoupons(1));
+        System.out.println(userCustomerTest.getAllCustomerCoupons(2));
+        System.out.println(userCustomerTest.getAllCategoryCoupons(1, 3));
+        System.out.println(userCustomerTest.getAllCategoryCoupons(1, 4));
+        System.out.println(userCustomerTest.getAllMaxPriceCoupons(1, 250));
+        System.out.println(userCustomerTest.getCustomerInfo(2));
     }
 }

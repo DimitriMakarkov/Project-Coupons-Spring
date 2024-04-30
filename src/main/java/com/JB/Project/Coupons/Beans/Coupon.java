@@ -2,14 +2,12 @@ package com.JB.Project.Coupons.Beans;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
-import lombok.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
 import java.sql.Date;
-import java.util.List;
 
 @Data
 @Entity
@@ -53,13 +51,5 @@ public class Coupon {
 
     @Column(name = "image")
     private String image;
-
-//    @ManyToMany(cascade = CascadeType.REMOVE)
-//    @Singular
-//    private List<Coupon> coupons;
-//@Singular
-//@OneToMany(cascade = CascadeType.ALL)
-//    private List<Customer> customers;
-
 
 }

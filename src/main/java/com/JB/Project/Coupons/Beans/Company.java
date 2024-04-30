@@ -34,7 +34,6 @@ public class Company {
     private String password;
 
     @Singular
-//    @OneToMany(cascade = CascadeType.REMOVE,orphanRemoval = true)
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "companyId")
     private List<Coupon> coupons;

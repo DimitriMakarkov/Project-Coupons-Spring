@@ -24,6 +24,14 @@ public class CustomerServiceImp implements CustomerService {
     CouponRepo couponRepo;
 
     @Override
+    public boolean Login(String email, String password) {
+        if (email.equals("dima9650@gmail.com") && password.equals("12345678")) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
     public void purchaseCoupon(int couponID, int customerID) throws CouponSystemException {
         Optional<Customer> findCustomer = customerRepo.findById(customerID);
         if (findCustomer.isPresent()) {
@@ -38,23 +46,19 @@ public class CustomerServiceImp implements CustomerService {
                         customer.setCoupons(customerCoupons);
                         customerRepo.saveAndFlush(customer);
                         Coupon coupon = findCoupon.get();
-                        coupon.setAmount(coupon.getAmount()-1);
+                        coupon.setAmount(coupon.getAmount() - 1);
                         couponRepo.saveAndFlush(coupon);
                         System.out.println("Coupon purchased!");
-                    }
-                    else {
+                    } else {
                         System.out.println("Coupon is expired");
                     }
-                }
-                else {
+                } else {
                     System.out.println("Coupon is empty");
                 }
-            }
-            else {
+            } else {
                 System.out.println("Coupon does not exists");
             }
-        }
-        else {
+        } else {
             System.out.println("Customer does not exists");
         }
     }
@@ -62,40 +66,37 @@ public class CustomerServiceImp implements CustomerService {
     @Override
     public List<Coupon> getAllCustomerCoupons(int customerID) throws CouponSystemException {
         Optional<Customer> findCustomer = customerRepo.findById(customerID);
-        if (findCustomer.isPresent()){
+        if (findCustomer.isPresent()) {
             return findCustomer.get().getCoupons();
-        }
-        else {
+        } else {
             System.out.println("Customer does not exists");
             return null;
         }
     }
 
     @Override
-    public List<Coupon> getAllCategoryCoupons(int customerID,int categoryID) throws CouponSystemException {
+    public List<Coupon> getAllCategoryCoupons(int customerID, int categoryID) throws CouponSystemException {
         Optional<Customer> findCustomer = customerRepo.findById(customerID);
         if (findCustomer.isPresent()) {
             List<Coupon> CustomerCoupons = findCustomer.get().getCoupons();
             Predicate<Coupon> condition = coupon -> !coupon.getCategoryid().equals(categoryID);
             CustomerCoupons.removeIf(condition);
             return CustomerCoupons;
-        }
-        else {
+        } else {
             System.out.println("Customer does not exists");
             return null;
         }
     }
 
     @Override
-    public List<Coupon> getAllMaxPriceCoupons(int customerID,float maxPrice) throws CouponSystemException {
+    public List<Coupon> getAllMaxPriceCoupons(int customerID, float maxPrice) throws CouponSystemException {
         Optional<Customer> findCustomer = customerRepo.findById(customerID);
         if (findCustomer.isPresent()) {
             List<Coupon> CustomerCoupons = findCustomer.get().getCoupons();
             Predicate<Coupon> condition = coupon -> coupon.getPrice() > maxPrice;
             CustomerCoupons.removeIf(condition);
             return CustomerCoupons;
-        }
-        else {
+        } else {
             System.out.println("Customer does not exists");
             return null;
         }

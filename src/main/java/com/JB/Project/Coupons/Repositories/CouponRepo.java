@@ -2,9 +2,6 @@ package com.JB.Project.Coupons.Repositories;
 
 import com.JB.Project.Coupons.Beans.Coupon;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.data.jpa.repository.Query;
-
 import java.util.List;
 import java.util.Optional;
 

@@ -1,7 +1,6 @@
 package com.JB.Project.Coupons.Service_Implementation;
 
 import com.JB.Project.Coupons.Beans.Company;
-import com.JB.Project.Coupons.Beans.Coupon;
 import com.JB.Project.Coupons.Beans.Customer;
 import com.JB.Project.Coupons.Exceptions.CouponSystemException;
 import com.JB.Project.Coupons.Exceptions.ErrorMessage;
@@ -11,7 +10,6 @@ import com.JB.Project.Coupons.Repositories.CustomerRepo;
 import com.JB.Project.Coupons.Services.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -26,6 +24,14 @@ public class AdminServiceImp implements AdminService {
 
     @Autowired
     CustomerRepo customerRepo;
+
+    @Override
+    public boolean Login(String email, String password) {
+        if (email.equals("admin@admin.com") && password.equals("admin")) {
+            return true;
+        }
+        return false;
+    }
 
     @Override
     public void addCompany(Company company) throws CouponSystemException {
@@ -129,8 +135,7 @@ public class AdminServiceImp implements AdminService {
             customerRepo.saveAndFlush(customer);
             customerRepo.deleteById(customerID);
             System.out.println("Customer has been deleted!");
-        }
-        else {
+        } else {
             System.out.println("Customer not found...");
         }
     }

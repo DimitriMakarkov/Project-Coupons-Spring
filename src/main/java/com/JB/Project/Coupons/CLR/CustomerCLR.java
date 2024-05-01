@@ -5,6 +5,7 @@ import com.JB.Project.Coupons.Login.ClientType;
 import com.JB.Project.Coupons.Login.LoginManager;
 import com.JB.Project.Coupons.Repositories.CouponRepo;
 import com.JB.Project.Coupons.Repositories.CustomerRepo;
+import com.JB.Project.Coupons.Services.CompanyService;
 import com.JB.Project.Coupons.Services.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -53,8 +54,8 @@ public class CustomerCLR implements CommandLineRunner {
                 .price(200.0f)
                 .build();
 
-        CustomerService userCustomerTest = LoginManager.getInstance().CustomerLogin("customer10@gmail.com", "12345678", ClientType.Customer);
-        userCustomerTest = customerService;
+//        CustomerService userCustomerTest = LoginManager.getInstance().CustomerLogin("customer10@gmail.com", "12345678", ClientType.Customer);
+        CustomerService userCustomerTest = (CustomerService) LoginManager.getInstance("customer10@gmail.com", "12345678", ClientType.Customer);
 
         userCustomerTest.purchaseCoupon(1, 1);
         userCustomerTest.purchaseCoupon(2, 1);

@@ -3,6 +3,7 @@ package com.JB.Project.Coupons.CLR;
 import com.JB.Project.Coupons.Beans.Coupon;
 import com.JB.Project.Coupons.Login.ClientType;
 import com.JB.Project.Coupons.Login.LoginManager;
+import com.JB.Project.Coupons.Services.AdminService;
 import com.JB.Project.Coupons.Services.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -77,8 +78,8 @@ public class CompanyCLR implements CommandLineRunner {
                 .price(100.0f)
                 .build();
 
-        CompanyService userCompanyTest = LoginManager.getInstance().CompanyLogin("test@gmail.com", "12345678", ClientType.Company);
-        userCompanyTest = companyService;
+//        CompanyService userCompanyTest = LoginManager.getInstance().CompanyLogin("test@gmail.com", "12345678", ClientType.Company);
+        CompanyService userCompanyTest = (CompanyService) LoginManager.getInstance("test@gmail.com", "12345678", ClientType.Company);
 
         userCompanyTest.addCoupon(coupon1);
         userCompanyTest.addCoupon(coupon2);

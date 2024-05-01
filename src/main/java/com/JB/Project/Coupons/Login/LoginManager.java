@@ -1,8 +1,5 @@
 package com.JB.Project.Coupons.Login;
 
-import com.JB.Project.Coupons.Service_Implementation.AdminServiceImp;
-import com.JB.Project.Coupons.Service_Implementation.CompanyServiceImp;
-import com.JB.Project.Coupons.Service_Implementation.CustomerServiceImp;
 import com.JB.Project.Coupons.Services.AdminService;
 import com.JB.Project.Coupons.Services.CompanyService;
 import com.JB.Project.Coupons.Services.CustomerService;
@@ -12,70 +9,51 @@ import org.springframework.stereotype.Component;
 @Component
 public class LoginManager {
 
-    private static LoginManager instance;
+    private static AdminService adminService;
 
-    private LoginManager() {
+    private static CompanyService companyService;
+
+    private static CustomerService customerService;
+
+    @Autowired
+    private LoginManager(AdminService adminService, CompanyService companyService, CustomerService customerService) {
+        this.adminService = adminService;
+        this.companyService = companyService;
+        this.customerService = customerService;
     }
 
-    @Autowired
-    AdminService adminService;
+    private static LoginManager instance;
 
-    @Autowired
-    CompanyService companyService;
-
-    @Autowired
-    CustomerService customerService;
-
-    public static LoginManager getInstance() {
+    public static Object getInstance(String email, String password, ClientType Type) {
         if (instance == null) {
             synchronized (LoginManager.class) {
                 if (instance == null) {
-                    instance = new LoginManager();
+                    switch (Type) {
+                        case Admin:
+                            if (adminService.Login(email, password)) {
+                                return adminService;
+                            } else {
+                                System.out.println("Login ERROR");
+                                return null;
+                            }
+                        case Company:
+                            if (companyService.Login(email, password)) {
+                                return companyService;
+                            } else {
+                                System.out.println("Login ERROR");
+                                return null;
+                            }
+                        case Customer:
+                            if (customerService.Login(email, password)) {
+                                return customerService;
+                            } else {
+                                System.out.println("Login ERROR");
+                                return null;
+                            }
+                    }
                 }
             }
         }
         return instance;
-    }
-
-    public AdminService AdminLogin(String Email, String Password, ClientType Type) {
-        switch (Type) {
-            case Admin:
-                AdminService admin = new AdminServiceImp();
-                if (admin.Login(Email, Password)) {
-                    System.out.println("Admin logged in!");
-                    return adminService;
-                } else {
-                    System.out.println("Login ERROR");
-                }
-        }
-        return null;
-    }
-
-    public CompanyService CompanyLogin(String Email, String Password, ClientType Type) {
-        switch (Type) {
-            case Admin:
-                CompanyService company = new CompanyServiceImp();
-                if (company.Login(Email, Password)) {
-                    System.out.println("Company logged in!");
-                    return companyService;
-                } else {
-                    System.out.println("Login ERROR");
-                }
-        }
-        return null;
-    }
-
-    public CustomerService CustomerLogin(String Email, String Password, ClientType Type) {
-        switch (Type) {
-            case Admin:
-                CustomerService customer = new CustomerServiceImp();
-                if (customer.Login(Email, Password)) {
-                    System.out.println("Customer logged in!");
-                    return customerService;
-                } else {
-                    System.out.println("Login ERROR");
-                }
-        }
-        return null;
     }
 }

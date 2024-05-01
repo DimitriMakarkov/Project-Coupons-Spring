@@ -76,8 +76,8 @@ public class AdminCLR implements CommandLineRunner {
                 .password("12345678")
                 .build();
 
-        AdminService userAdminTest = LoginManager.getInstance().AdminLogin("admin@admin.com", "admin", ClientType.Admin);
-        userAdminTest = adminService;
+//        AdminService userAdminTest = LoginManager.getInstance().AdminLogin("admin@admin.com", "admin", ClientType.Admin);
+        AdminService userAdminTest = (AdminService) LoginManager.getInstance("admin@admin.com", "admin", ClientType.Admin);
 
         userAdminTest.addCompany(company1);
         userAdminTest.addCompany(company1);

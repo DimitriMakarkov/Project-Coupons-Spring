@@ -25,7 +25,7 @@ public class CustomerServiceImp implements CustomerService {
 
     @Override
     public boolean Login(String email, String password) {
-        if (email.equals("dima9650@gmail.com") && password.equals("12345678")) {
+        if (email.equals("customer10@gmail.com") && password.equals("12345678")) {
             return true;
         }
         return false;

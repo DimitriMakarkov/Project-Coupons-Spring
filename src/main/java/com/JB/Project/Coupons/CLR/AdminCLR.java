@@ -79,17 +79,18 @@ public class AdminCLR implements CommandLineRunner {
 //        AdminService userAdminTest = LoginManager.getInstance().AdminLogin("admin@admin.com", "admin", ClientType.Admin);
         AdminService userAdminTest = (AdminService) LoginManager.getInstance("admin@admin.com", "admin", ClientType.Admin);
 
+//        userAdminTest.deleteCompany(1);
         userAdminTest.addCompany(company1);
-        userAdminTest.addCompany(company1);
+//        userAdminTest.addCompany(company1);
         userAdminTest.addCompany(company2);
         userAdminTest.addCompany(company3);
-        company3.setPassword("87654321");
-        userAdminTest.updateCompany(3, company3);
-        company3.setName("new name");
-        userAdminTest.updateCompany(3, company3);
+//        company3.setPassword("87654321");
+//        userAdminTest.updateCompany(3, company3);
+//        company3.setName("new name");
+//        userAdminTest.updateCompany(3, company3);
 ////            adminService.deleteCompany(3);
-        System.out.println(userAdminTest.getAllCompanies());
-        System.out.println(userAdminTest.getSingleCompany(1));
+//        System.out.println(userAdminTest.getAllCompanies());
+//        System.out.println(userAdminTest.getSingleCompany(1));
 
         Customer customer1 = Customer.builder()
                 .firstName("Testcustomer1")
@@ -114,15 +115,15 @@ public class AdminCLR implements CommandLineRunner {
 
         userAdminTest.addCustomer(customer1);
         userAdminTest.addCustomer(customer2);
-        userAdminTest.addCustomer(customer2);
+//        userAdminTest.addCustomer(customer2);
         userAdminTest.addCustomer(customer3);
-        customer3.setPassword("87654321");
-        userAdminTest.updateCustomer(3, customer3);
-        customer3.setId(10);
-        userAdminTest.updateCustomer(3, customer3);
-        userAdminTest.deleteCustomer(3);
-        System.out.println(userAdminTest.getAllCustomers());
-        System.out.println(userAdminTest.getSingleCustomer(2));
+//        customer3.setPassword("87654321");
+//        userAdminTest.updateCustomer(3, customer3);
+//        customer3.setId(10);
+//        userAdminTest.updateCustomer(3, customer3);
+//        userAdminTest.deleteCustomer(3);
+//        System.out.println(userAdminTest.getAllCustomers());
+//        System.out.println(userAdminTest.getSingleCustomer(2));
 
 
     }

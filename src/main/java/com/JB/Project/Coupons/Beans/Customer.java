@@ -37,8 +37,8 @@ public class Customer {
     @Length(min = 5, max = 20)
     private String password;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @PrimaryKeyJoinColumn(name = "coupon_id")
+    @ManyToMany(cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn(name = "customer_id") //was "coupon_id"
     @JoinTable(name = "customers_vs_coupons")
     @Singular
     private List<Coupon> coupons;

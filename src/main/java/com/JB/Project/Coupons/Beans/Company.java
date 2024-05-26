@@ -37,7 +37,4 @@ public class Company {
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "companyId")
     private List<Coupon> coupons;
-//@Singular
-//@OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true, mappedBy = "companyid")
-//private List<Coupon> coupons;
 }

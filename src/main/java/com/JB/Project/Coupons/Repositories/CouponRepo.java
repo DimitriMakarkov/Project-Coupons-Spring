@@ -2,6 +2,11 @@ package com.JB.Project.Coupons.Repositories;
 
 import com.JB.Project.Coupons.Beans.Coupon;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -15,6 +20,7 @@ public interface CouponRepo extends JpaRepository<Coupon,Integer> {
 
     List<Coupon> findByCompanyid(int Companyid);
 
-    void deleteAllByCompanyid(int Companyid);
+    @Transactional
+    void deleteByCompanyid(int Companyid);
 
 }

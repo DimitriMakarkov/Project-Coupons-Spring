@@ -84,7 +84,7 @@ public class CompanyServiceImp implements CompanyService {
             System.out.println(CustomersWithCoupons);
             if (!CustomersWithCoupons.isEmpty()) {
                 for (Customer customer : CustomersWithCoupons) {
-                    customer.setCoupons(null);
+//                    customer.setCoupons(null);
                 }
                 customerRepo.saveAllAndFlush(CustomersWithCoupons);
                 couponRepo.deleteById(couponID);

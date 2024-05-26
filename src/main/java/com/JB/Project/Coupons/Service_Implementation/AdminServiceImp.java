@@ -1,6 +1,7 @@
 package com.JB.Project.Coupons.Service_Implementation;
 
 import com.JB.Project.Coupons.Beans.Company;
+import com.JB.Project.Coupons.Beans.Coupon;
 import com.JB.Project.Coupons.Beans.Customer;
 import com.JB.Project.Coupons.Exceptions.CouponSystemException;
 import com.JB.Project.Coupons.Exceptions.ErrorMessage;
@@ -78,10 +79,12 @@ public class AdminServiceImp implements AdminService {
             if (!CustomersWithCoupons.isEmpty()) {
                 for (Customer customer : CustomersWithCoupons) {
                     customer.setCoupons(null);
+                    System.out.println(CustomersWithCoupons);
                 }
                 customerRepo.saveAllAndFlush(CustomersWithCoupons);
+                couponRepo.deleteByCompanyid(companyId);
                 companyRepo.deleteById(companyId);
-                couponRepo.deleteAllByCompanyid(companyId);
+
             }
         }
     }

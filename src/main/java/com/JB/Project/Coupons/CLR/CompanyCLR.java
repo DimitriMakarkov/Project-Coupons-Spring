@@ -85,15 +85,15 @@ public class CompanyCLR implements CommandLineRunner {
         userCompanyTest.addCoupon(coupon2);
         userCompanyTest.addCoupon(coupon3);
         userCompanyTest.addCoupon(coupon4);
-        coupon1.setCompanyid(3);
-        coupon1.setId(10);
-        coupon1.setDescription("10% off");
-        userCompanyTest.updateCoupon(3, coupon1);
+//        coupon1.setCompanyid(3);
+//        coupon1.setId(10);
+//        coupon1.setDescription("10% off");
+//        userCompanyTest.updateCoupon(3, coupon1);
 //    companyService.deleteCoupon(1);//
-        System.out.println(userCompanyTest.getAllCompanyCoupons(1));
-        System.out.println(userCompanyTest.getCompanyInfo(2));
-        System.out.println(userCompanyTest.getAllCategoryCoupons(1, 3));
-        System.out.println(userCompanyTest.getAllMaxPriceCoupons(1, 210.0f));
+//        System.out.println(userCompanyTest.getAllCompanyCoupons(1));
+//        System.out.println(userCompanyTest.getCompanyInfo(2));
+//        System.out.println(userCompanyTest.getAllCategoryCoupons(1, 3));
+//        System.out.println(userCompanyTest.getAllMaxPriceCoupons(1, 210.0f));
 
     }
 }

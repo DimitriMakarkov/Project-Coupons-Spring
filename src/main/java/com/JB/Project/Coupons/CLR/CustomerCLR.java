@@ -5,6 +5,7 @@ import com.JB.Project.Coupons.Login.ClientType;
 import com.JB.Project.Coupons.Login.LoginManager;
 import com.JB.Project.Coupons.Repositories.CouponRepo;
 import com.JB.Project.Coupons.Repositories.CustomerRepo;
+import com.JB.Project.Coupons.Services.AdminService;
 import com.JB.Project.Coupons.Services.CompanyService;
 import com.JB.Project.Coupons.Services.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,8 @@ public class CustomerCLR implements CommandLineRunner {
     @Autowired
     CustomerService customerService;
 
+    @Autowired
+    AdminService adminService;
 
     @Override
     public void run(String... args) throws Exception {
@@ -59,11 +62,14 @@ public class CustomerCLR implements CommandLineRunner {
 
         userCustomerTest.purchaseCoupon(1, 1);
         userCustomerTest.purchaseCoupon(2, 1);
-        System.out.println(userCustomerTest.getAllCustomerCoupons(1));
-        System.out.println(userCustomerTest.getAllCustomerCoupons(2));
-        System.out.println(userCustomerTest.getAllCategoryCoupons(1, 3));
-        System.out.println(userCustomerTest.getAllCategoryCoupons(1, 4));
-        System.out.println(userCustomerTest.getAllMaxPriceCoupons(1, 250));
-        System.out.println(userCustomerTest.getCustomerInfo(2));
+        userCustomerTest.purchaseCoupon(1,2);
+//        System.out.println(userCustomerTest.getAllCustomerCoupons(1));
+//        System.out.println(userCustomerTest.getAllCustomerCoupons(2));
+//        System.out.println(userCustomerTest.getAllCategoryCoupons(1, 3));
+//        System.out.println(userCustomerTest.getAllCategoryCoupons(1, 4));
+//        System.out.println(userCustomerTest.getAllMaxPriceCoupons(1, 250));
+//        System.out.println(userCustomerTest.getCustomerInfo(2));
+
+//        adminService.deleteCompany(1);
     }
 }

@@ -11,6 +11,7 @@ import com.JB.Project.Coupons.Repositories.CustomerRepo;
 import com.JB.Project.Coupons.Services.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -45,11 +46,11 @@ public class AdminServiceImp implements AdminService {
                 System.out.println("Company saved successfully!");
             } else {
                 System.out.println("Company with the same email already exists...");
-//                throw new CouponSystemException(ErrorMessage.COMPANY_EMAIL_EXISTS);
+                throw new CouponSystemException(ErrorMessage.COMPANY_EMAIL_EXISTS);
             }
         } else {
             System.out.println("Company with the same name already exists...");
-//            throw new CouponSystemException(ErrorMessage.COMPANY_NAME_EXISTS);
+            throw new CouponSystemException(ErrorMessage.COMPANY_NAME_EXISTS);
         }
     }
 
@@ -63,9 +64,11 @@ public class AdminServiceImp implements AdminService {
                 System.out.println("Company has been updated!");
             } else {
                 System.out.println("Cannot change company name...");
+                throw new CouponSystemException(ErrorMessage.COMPANY_CANNOT_CHANGE_NAME);
             }
         } else {
             System.out.println("Company not found...");
+            throw new CouponSystemException(ErrorMessage.COMPANY_NOT_FOUND);
         }
     }
 
@@ -86,6 +89,9 @@ public class AdminServiceImp implements AdminService {
                 companyRepo.deleteById(companyId);
 
             }
+        } else {
+            System.out.println("Company not found...");
+            throw new CouponSystemException(ErrorMessage.COMPANY_NOT_FOUND);
         }
     }
 
@@ -108,6 +114,7 @@ public class AdminServiceImp implements AdminService {
             System.out.println("Customer saved successfully!");
         } else {
             System.out.println("Customer with the same email already exists...");
+            throw new CouponSystemException(ErrorMessage.CUSTOMER_EMAIL_EXISTS);
         }
     }
 
@@ -124,7 +131,7 @@ public class AdminServiceImp implements AdminService {
             }
         } else {
             System.out.println("Customer not found...");
-//            new CouponSystemException(ErrorMessage.CUSTOMER_NOT_FOUND);
+            new CouponSystemException(ErrorMessage.CUSTOMER_NOT_FOUND);
         }
     }
 

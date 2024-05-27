@@ -70,6 +70,6 @@ public class CustomerCLR implements CommandLineRunner {
 //        System.out.println(userCustomerTest.getAllMaxPriceCoupons(1, 250));
 //        System.out.println(userCustomerTest.getCustomerInfo(2));
 
-//        adminService.deleteCompany(1);
+        adminService.deleteCompany(1);
     }
 }

@@ -1,6 +1,7 @@
 package com.JB.Project.Coupons.Services;
 
 import com.JB.Project.Coupons.Beans.Company;
+import com.JB.Project.Coupons.Beans.Coupon;
 import com.JB.Project.Coupons.Beans.Customer;
 import com.JB.Project.Coupons.Exceptions.CouponSystemException;
 import java.util.List;
@@ -28,6 +29,8 @@ public interface AdminService {
     List<Customer> getAllCustomers();
 
     Customer getSingleCustomer(int customerID) throws CouponSystemException;
+
+    List<Coupon> getAllCategoryCoupons(int categoryID) throws CouponSystemException;
 
 
 }

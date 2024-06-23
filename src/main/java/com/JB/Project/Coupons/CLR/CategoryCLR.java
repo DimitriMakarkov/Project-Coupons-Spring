@@ -35,6 +35,6 @@ public class CategoryCLR implements CommandLineRunner {
                 .name("Vacation")
                 .build();
 
-        categoryRepo.saveAll(Arrays.asList(category1, category2, category3, category4));
+//        categoryRepo.saveAll(Arrays.asList(category1, category2, category3, category4));
     }
 }

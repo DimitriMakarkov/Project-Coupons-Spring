@@ -159,4 +159,9 @@ public class AdminServiceImp implements AdminService {
     public Customer getSingleCustomer(int customerID) throws CouponSystemException {
         return customerRepo.findById(customerID).orElseThrow(() -> new CouponSystemException(ErrorMessage.CUSTOMER_NOT_FOUND));
     }
+
+    @Override
+    public List<Coupon> getAllCategoryCoupons(int categoryID) throws CouponSystemException {
+        return couponRepo.findAllByCategoryid(categoryID);
+    }
 }

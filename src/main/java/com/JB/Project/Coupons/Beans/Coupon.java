@@ -35,13 +35,13 @@ public class Coupon {
     @Length(min = 0,max = 40)
     private String description;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "yyyy-MM-dd")
+//    @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "yyyy-MM-dd")
     @Column(name = "start_date",nullable = false)
-    private Date start_date; //Date mysql not java util
+    private String start_date; //Date mysql not java util
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "yyyy-MM-dd")
+//    @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "yyyy-MM-dd")
     @Column(name = "end_date",nullable = false)
-    private Date end_date; //Date mysql not java util
+    private String end_date; //Date mysql not java util
 
     @Column(name = "amount",nullable = false)
     private Integer amount;

@@ -13,6 +13,9 @@ public enum ErrorMessage {
     COMPANY_EMAIL_EXISTS("Company with the same email already exists"),
     COMPANY_CANNOT_CHANGE_NAME("Cannot change company name"),
 
+    USER_EXISTS("User already exists"),
+    USER_NOT_FOUND("User not found"),
+
     CUSTOMER_EMAIL_EXISTS("Customer with the same email already exists"),
     CUSTOMER_NOT_FOUND("Customer not found"),
 

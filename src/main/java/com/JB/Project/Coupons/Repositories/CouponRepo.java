@@ -18,6 +18,8 @@ public interface CouponRepo extends JpaRepository<Coupon,Integer> {
 
     List<Coupon> findAllByCompanyid(int Companyid);
 
+    List<Coupon> findAllByCategoryid(int Categoryid);
+
     List<Coupon> findByCompanyid(int Companyid);
 
     @Transactional

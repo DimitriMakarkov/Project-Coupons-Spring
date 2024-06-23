@@ -51,8 +51,8 @@ public class CustomerCLR implements CommandLineRunner {
                 .categoryid(2)
                 .title("Electricity")
                 .description("20% off")
-                .start_date(CouponStartDate)
-                .end_date(CouponEndDate)
+                .start_date("2024/01/01")
+                .end_date("2025/01/01")
                 .amount(5)
                 .price(200.0f)
                 .build();
@@ -60,16 +60,10 @@ public class CustomerCLR implements CommandLineRunner {
 //        CustomerService userCustomerTest = LoginManager.getInstance().CustomerLogin("customer10@gmail.com", "12345678", ClientType.Customer);
         CustomerService userCustomerTest = (CustomerService) LoginManager.getInstance("customer10@gmail.com", "12345678", ClientType.Customer);
 
-        userCustomerTest.purchaseCoupon(1, 1);
-        userCustomerTest.purchaseCoupon(2, 1);
-        userCustomerTest.purchaseCoupon(1,2);
-//        System.out.println(userCustomerTest.getAllCustomerCoupons(1));
-//        System.out.println(userCustomerTest.getAllCustomerCoupons(2));
-//        System.out.println(userCustomerTest.getAllCategoryCoupons(1, 3));
-//        System.out.println(userCustomerTest.getAllCategoryCoupons(1, 4));
-//        System.out.println(userCustomerTest.getAllMaxPriceCoupons(1, 250));
-//        System.out.println(userCustomerTest.getCustomerInfo(2));
+//        userCustomerTest.purchaseCoupon(1, 1);
+//        userCustomerTest.purchaseCoupon(2, 1);
+//        userCustomerTest.purchaseCoupon(1,2);
 
-        adminService.deleteCompany(1);
+
     }
 }

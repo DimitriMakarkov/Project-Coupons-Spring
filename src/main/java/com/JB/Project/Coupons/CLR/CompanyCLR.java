@@ -39,8 +39,8 @@ public class CompanyCLR implements CommandLineRunner {
                 .categoryid(4)
                 .title("Vacation")
                 .description("15% off")
-                .start_date(CouponStartDate)
-                .end_date(CouponEndDate)
+                .start_date("2024/01/01")
+                .end_date("2025/06/14")
                 .amount(7)
                 .price(220.0f)
                 .build();
@@ -50,8 +50,8 @@ public class CompanyCLR implements CommandLineRunner {
                 .categoryid(1)
                 .title("Food")
                 .description("25% off")
-                .start_date(CouponStartDate)
-                .end_date(CouponEndDate)
+                .start_date("2024/01/01")
+                .end_date("2026/12/09")
                 .amount(6)
                 .price(150.0f)
                 .build();
@@ -61,8 +61,8 @@ public class CompanyCLR implements CommandLineRunner {
                 .categoryid(1)
                 .title("Food")
                 .description("30% off")
-                .start_date(CouponStartDate)
-                .end_date(CouponEndDate)
+                .start_date("2024/01/01")
+                .end_date("2025/01/01")
                 .amount(2)
                 .price(100.0f)
                 .build();
@@ -72,8 +72,8 @@ public class CompanyCLR implements CommandLineRunner {
                 .categoryid(1)
                 .title("Food")
                 .description("30% off")
-                .start_date(CouponStartDate)
-                .end_date(CouponEndDate)
+                .start_date("2024/01/01")
+                .end_date("2025/01/01")
                 .amount(2)
                 .price(100.0f)
                 .build();
@@ -81,19 +81,11 @@ public class CompanyCLR implements CommandLineRunner {
 //        CompanyService userCompanyTest = LoginManager.getInstance().CompanyLogin("test@gmail.com", "12345678", ClientType.Company);
         CompanyService userCompanyTest = (CompanyService) LoginManager.getInstance("test@gmail.com", "12345678", ClientType.Company);
 
-        userCompanyTest.addCoupon(coupon1);
-        userCompanyTest.addCoupon(coupon2);
-        userCompanyTest.addCoupon(coupon3);
-        userCompanyTest.addCoupon(coupon4);
-//        coupon1.setCompanyid(3);
-//        coupon1.setId(10);
-//        coupon1.setDescription("10% off");
-//        userCompanyTest.updateCoupon(3, coupon1);
-//    companyService.deleteCoupon(1);//
-//        System.out.println(userCompanyTest.getAllCompanyCoupons(1));
-//        System.out.println(userCompanyTest.getCompanyInfo(2));
-//        System.out.println(userCompanyTest.getAllCategoryCoupons(1, 3));
-//        System.out.println(userCompanyTest.getAllMaxPriceCoupons(1, 210.0f));
+//        userCompanyTest.addCoupon(coupon1);
+//        userCompanyTest.addCoupon(coupon2);
+//        userCompanyTest.addCoupon(coupon3);
+//        userCompanyTest.addCoupon(coupon4);
+
 
     }
 }

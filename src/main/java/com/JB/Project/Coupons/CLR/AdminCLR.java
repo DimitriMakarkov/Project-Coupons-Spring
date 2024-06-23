@@ -1,11 +1,11 @@
 package com.JB.Project.Coupons.CLR;
 
-import com.JB.Project.Coupons.Beans.Company;
-import com.JB.Project.Coupons.Beans.Coupon;
-import com.JB.Project.Coupons.Beans.Customer;
+import com.JB.Project.Coupons.Beans.*;
 import com.JB.Project.Coupons.Login.ClientType;
 import com.JB.Project.Coupons.Login.LoginManager;
+import com.JB.Project.Coupons.Service_Implementation.UserServiceImp;
 import com.JB.Project.Coupons.Services.AdminService;
+import com.JB.Project.Coupons.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
@@ -20,6 +20,9 @@ public class AdminCLR implements CommandLineRunner {
 
     @Autowired
     AdminService adminService;
+
+    @Autowired
+    UserService userService;
 
     @Override
     public void run(String... args) throws Exception {
@@ -39,8 +42,8 @@ public class AdminCLR implements CommandLineRunner {
                 .categoryid(2)
                 .title("Electricity")
                 .description("20% off")
-                .start_date(CouponStartDate)
-                .end_date(CouponEndDate)
+                .start_date("2024/01/01")
+                .end_date("2025/01/01")
                 .amount(5)
                 .price(300.0f)
                 .build();
@@ -50,8 +53,8 @@ public class AdminCLR implements CommandLineRunner {
                 .categoryid(3)
                 .title("Restaurant")
                 .description("10% off")
-                .start_date(CouponStartDate)
-                .end_date(CouponEndDate)
+                .start_date("2024/01/01")
+                .end_date("2025/01/01")
                 .amount(3)
                 .price(200.0f)
                 .build();
@@ -76,21 +79,16 @@ public class AdminCLR implements CommandLineRunner {
                 .password("12345678")
                 .build();
 
+//        UserDetails userDetails = new UserDetails("dima9650@gmail.com","12345678", UserType.ADMIN);
+
 //        AdminService userAdminTest = LoginManager.getInstance().AdminLogin("admin@admin.com", "admin", ClientType.Admin);
         AdminService userAdminTest = (AdminService) LoginManager.getInstance("admin@admin.com", "admin", ClientType.Admin);
 
-//        userAdminTest.deleteCompany(1);
-        userAdminTest.addCompany(company1);
 //        userAdminTest.addCompany(company1);
-        userAdminTest.addCompany(company2);
-        userAdminTest.addCompany(company3);
-//        company3.setPassword("87654321");
-//        userAdminTest.updateCompany(3, company3);
-//        company3.setName("new name");
-//        userAdminTest.updateCompany(3, company3);
-////            adminService.deleteCompany(3);
-//        System.out.println(userAdminTest.getAllCompanies());
-//        System.out.println(userAdminTest.getSingleCompany(1));
+//        userAdminTest.addCompany(company2);
+//        userAdminTest.addCompany(company3);
+
+//        userService.registerUser(userDetails);
 
         Customer customer1 = Customer.builder()
                 .firstName("Testcustomer1")
@@ -113,17 +111,10 @@ public class AdminCLR implements CommandLineRunner {
                 .password("12345678")
                 .build();
 
-        userAdminTest.addCustomer(customer1);
-        userAdminTest.addCustomer(customer2);
+//        userAdminTest.addCustomer(customer1);
 //        userAdminTest.addCustomer(customer2);
-        userAdminTest.addCustomer(customer3);
-//        customer3.setPassword("87654321");
-//        userAdminTest.updateCustomer(3, customer3);
-//        customer3.setId(10);
-//        userAdminTest.updateCustomer(3, customer3);
-//        userAdminTest.deleteCustomer(3);
-//        System.out.println(userAdminTest.getAllCustomers());
-//        System.out.println(userAdminTest.getSingleCustomer(2));
+//        userAdminTest.addCustomer(customer3);
+
 
 
     }

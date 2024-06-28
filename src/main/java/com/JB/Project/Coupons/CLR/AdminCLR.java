@@ -87,6 +87,7 @@ public class AdminCLR implements CommandLineRunner {
 //        userAdminTest.addCompany(company1);
 //        userAdminTest.addCompany(company2);
 //        userAdminTest.addCompany(company3);
+//        userAdminTest.deleteCompany(4);
 
 //        userService.registerUser(userDetails);
 

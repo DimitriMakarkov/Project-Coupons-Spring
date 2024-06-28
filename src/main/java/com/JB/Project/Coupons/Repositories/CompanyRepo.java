@@ -8,6 +8,8 @@ public interface CompanyRepo extends JpaRepository<Company,Integer> {
 
     Optional<Company> findByName(String Name);
 
+    Optional<Company> findByEmailAndPassword(String Email,String Password);
+
     Optional<Company> findByEmail(String Email);
 
 }

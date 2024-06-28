@@ -121,7 +121,7 @@ public class CompanyServiceImp implements CompanyService {
     }
 
     @Override
-    public Company getCompanyInfo(int companyID) throws CouponSystemException {
-        return companyRepo.findById(companyID).orElseThrow(() -> new CouponSystemException(ErrorMessage.ID_NOT_FOUND));
+    public Company getCompanyInfo(String email,String password) throws CouponSystemException {
+        return companyRepo.findByEmailAndPassword(email,password).orElseThrow(() -> new CouponSystemException(ErrorMessage.ID_NOT_FOUND));
     }
 }

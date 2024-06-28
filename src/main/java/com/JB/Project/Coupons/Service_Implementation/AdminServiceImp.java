@@ -89,6 +89,9 @@ public class AdminServiceImp implements AdminService {
                 companyRepo.deleteById(companyId);
 
             }
+            customerRepo.saveAllAndFlush(CustomersWithCoupons);
+            couponRepo.deleteByCompanyid(companyId);
+            companyRepo.deleteById(companyId);
         } else {
             System.out.println("Company not found...");
             throw new CouponSystemException(ErrorMessage.COMPANY_NOT_FOUND);

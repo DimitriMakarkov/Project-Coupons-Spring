@@ -49,21 +49,27 @@ public class CompanyController {
         return new ResponseEntity<>(true,getHeaders(jwt),HttpStatus.OK);
     }
 
-    @GetMapping("/getAllCompanyCoupons")
+    @GetMapping("/getSingleCoupon/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<?> getAllCompanyCoupons(@PathVariable int id,@RequestHeader("Authorization") String jwt) throws CouponSystemException {
-        return new ResponseEntity<>(companyService.getAllCompanyCoupons(id),getHeaders(jwt),HttpStatus.OK);
+    public ResponseEntity<?> getSingleCoupon(@PathVariable int id,@RequestHeader("Authorization") String jwt) throws CouponSystemException {
+        return new ResponseEntity<>(companyService.getSingleCoupon(id),getHeaders(jwt),HttpStatus.OK);
     }
 
-    @GetMapping("/getAllCategoryCoupons/{id}")
+    @GetMapping("/getAllCompanyCoupons/{companyID}")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<?> getAllCategoryCoupons(@PathVariable int companyID,int categoryID,@RequestHeader("Authorization") String jwt) throws CouponSystemException {
+    public ResponseEntity<?> getAllCompanyCoupons(@PathVariable int companyID,@RequestHeader("Authorization") String jwt) throws CouponSystemException {
+        return new ResponseEntity<>(companyService.getAllCompanyCoupons(companyID),getHeaders(jwt),HttpStatus.OK);
+    }
+
+    @GetMapping("/getAllCategoryCoupons/{companyID}/{categoryID}")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<?> getAllCategoryCoupons(@PathVariable int companyID,@PathVariable int categoryID,@RequestHeader("Authorization") String jwt) throws CouponSystemException {
         return new ResponseEntity<>(companyService.getAllCategoryCoupons(companyID,categoryID),getHeaders(jwt),HttpStatus.OK);
     }
 
-    @GetMapping("/getAllMaxPriceCoupons/{id}")
+    @GetMapping("/getAllMaxPriceCoupons/{companyID}/{maxPrice}")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<?> getAllMaxPriceCoupons(@PathVariable int companyID,float maxPrice,@RequestHeader("Authorization") String jwt) throws CouponSystemException {
+    public ResponseEntity<?> getAllMaxPriceCoupons(@PathVariable int companyID,@PathVariable float maxPrice,@RequestHeader("Authorization") String jwt) throws CouponSystemException {
         return new ResponseEntity<>(companyService.getAllMaxPriceCoupons(companyID,maxPrice),getHeaders(jwt),HttpStatus.OK);
     }
 

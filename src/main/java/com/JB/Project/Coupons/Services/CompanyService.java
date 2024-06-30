@@ -17,6 +17,8 @@ public interface CompanyService {
 
     List<Coupon> getAllCompanyCoupons(int companyID) throws CouponSystemException;
 
+    Coupon getSingleCoupon(int couponID) throws CouponSystemException;
+
     List<Coupon> getAllCategoryCoupons(int companyID,int categoryID) throws CouponSystemException;
 
     List<Coupon> getAllMaxPriceCoupons(int companyID,float MaxPrice) throws CouponSystemException;

@@ -104,6 +104,11 @@ public class CompanyServiceImp implements CompanyService {
     }
 
     @Override
+    public Coupon getSingleCoupon(int couponID) throws CouponSystemException {
+        return couponRepo.findById(couponID).orElseThrow(() -> new CouponSystemException(ErrorMessage.COUPON_NOT_FOUND));
+    }
+
+    @Override
     public List<Coupon> getAllCategoryCoupons(int company_id, int category_id) throws CouponSystemException {
         List<Coupon> CompanyCoupons = couponRepo.findAllByCompanyid(company_id);
         Predicate<Coupon> condition = coupon -> !coupon.getCategoryid().equals(category_id);

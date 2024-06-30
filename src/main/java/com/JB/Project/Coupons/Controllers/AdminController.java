@@ -48,6 +48,7 @@ public class AdminController {
     @DeleteMapping("/deleteCompany/{id}")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<?> deleteCompany(@PathVariable int id,@RequestHeader("Authorization") String jwt) throws CouponSystemException{
+        System.out.println(id+"   "+jwt);
         adminService.deleteCompany(id);
         return new ResponseEntity<>(true,getHeaders(jwt),HttpStatus.OK);
     }
